@@ -1,5 +1,4 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 from api.repositories.portal_aei_repo import PortalAeiRepository
 
