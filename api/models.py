@@ -47,3 +47,49 @@ class UserPlantilla(models.Model):
         managed = False
         db_table = "dbo.UserPlantilla"
         unique_together = (("user", "plantilla"),)
+
+class PlantillaRegistro(models.Model):
+    RegistroId = models.BigAutoField(primary_key=True)
+    PlantillaId = models.IntegerField()
+    UserId = models.IntegerField()
+    FechaRegistro = models.DateTimeField()
+    FechaEjecucion = models.DateTimeField(null=True, blank=True)
+    CampaniaId = models.CharField(max_length=8, null=True, blank=True)
+    LoteId = models.IntegerField(null=True, blank=True)
+    Lat = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+    Lon = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+    Estado = models.CharField(max_length=30)
+    DataJson = models.TextField()
+    SyncStatus = models.CharField(max_length=30)
+    SyncError = models.CharField(max_length=400, null=True, blank=True)
+    SyncAttempts = models.IntegerField()
+    ServerRegistroId = models.BigIntegerField(null=True, blank=True)
+    CreatedAt = models.DateTimeField()
+    UpdatedAt = models.DateTimeField()
+    DeletedAt = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        managed = False
+        db_table = 'dbo.PlantillaRegistro'
+
+
+class Campania(models.Model):
+    id_campania = models.CharField(db_column="ID_CAMPANIA", primary_key=True, max_length=8)
+    descripcion = models.CharField(db_column="DESCRIPCION", max_length=50)
+
+    class Meta:
+        managed = False
+        db_table = "CAMPANIA"
+
+
+class Lote(models.Model):
+    id_lote = models.AutoField(db_column="ID_LOTE", primary_key=True)
+    descripcion = models.CharField(db_column="DESCRIPCION", max_length=100)
+    area_total = models.DecimalField(db_column="AREA_TOTAL", max_digits=10, decimal_places=2, null=True, blank=True)
+    id_fundo = models.CharField(db_column="ID_FUNDO", max_length=15)
+    id_variedad = models.BigIntegerField(db_column="ID_VARIEDAD")
+    ceco = models.CharField(db_column="CECO", max_length=15)
+
+    class Meta:
+        managed = False
+        db_table = "LOTE"
