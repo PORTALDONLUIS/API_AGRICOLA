@@ -1,6 +1,6 @@
 import json
+import os
 
-from rest_framework.decorators import api_view, permission_classes
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -23,47 +23,6 @@ from rest_framework.parsers import MultiPartParser, FormParser
 #     def get(self, request):
 #         return Response({"ok": True, "user": request.user.username})
 
-
-@api_view(["POST"])
-@permission_classes([IsAuthenticated])
-def registros_sync(request):
-    """
-    Espera:
-    {
-      "templateKey": "cartilla-fito",
-      "payloadVersion": 1,
-      "dataJson": {...},
-      "campaniaId": 2026, "loteId": 12,
-      "lat": -14.1, "lon": -72.3
-    }
-
-    Responde:
-    { "serverRegistroId": 123 }
-    """
-
-    template_key = request.data.get("templateKey")
-    payload_version = request.data.get("payloadVersion")
-    data_json = request.data.get("dataJson")
-
-    if not template_key or data_json is None:
-        return Response(
-            {"detail": "templateKey y dataJson son obligatorios"},
-            status=status.HTTP_400_BAD_REQUEST,
-        )
-
-    # Crea o actualiza (si luego quieres idempotencia, aquí lo mejoras)
-    obj = Registro.objects.create(
-        user=request.user,
-        template_key=template_key,
-        payload_version=payload_version or 1,
-        data_json=data_json,
-        campania_id=request.data.get("campaniaId"),
-        lote_id=request.data.get("loteId"),
-        lat=request.data.get("lat"),
-        lon=request.data.get("lon"),
-    )
-
-    return Response({"serverRegistroId": obj.id}, status=status.HTTP_201_CREATED)
 
 class PlantillasAsignadasView(APIView):
     authentication_classes = [JWTAuthentication]
@@ -164,49 +123,65 @@ class SyncRegistroView(APIView):
         )
 
 class UploadRegistroFotoView(APIView):
+    """Sube una foto para un registro. Requiere registro_id en URL y multipart: file, slot."""
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     parser_classes = [MultiPartParser, FormParser]
 
     def post(self, request, registro_id: int):
-        slot = int(request.data.get("slot", "0"))
-        file = request.FILES.get("file")
+        try:
+            raw_slot = request.data.get("slot")
+            if raw_slot is None:
+                return Response({"detail": "slot requerido"}, status=status.HTTP_400_BAD_REQUEST)
+            slot = int(raw_slot) if not isinstance(raw_slot, int) else raw_slot
+        except (ValueError, TypeError):
+            return Response({"detail": "slot debe ser número 1-10"}, status=status.HTTP_400_BAD_REQUEST)
 
         if slot < 1 or slot > 10:
-            return Response({"detail": "slot inválido"}, status=400)
+            return Response({"detail": "slot inválido (1-10)"}, status=status.HTTP_400_BAD_REQUEST)
+
+        file = request.FILES.get("file")
         if not file:
-            return Response({"detail": "archivo requerido"}, status=400)
+            return Response({"detail": "archivo requerido"}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            reg = PlantillaRegistro.objects.get(RegistroId=registro_id, UserId=request.user.id, DeletedAt__isnull=True)
+            reg = PlantillaRegistro.objects.get(
+                RegistroId=registro_id,
+                UserId=request.user.id,
+                DeletedAt__isnull=True,
+            )
         except PlantillaRegistro.DoesNotExist:
-            return Response({"detail": "registro no existe"}, status=404)
+            return Response({"detail": "registro no existe"}, status=status.HTTP_404_NOT_FOUND)
 
-        # guarda archivo
         folder = f"registros/{registro_id}"
         filename = f"foto_{slot}.jpg"
         path = os.path.join(folder, filename)
 
         saved = default_storage.save(path, file)
-        url = default_storage.url(saved)  # serverUrl
+        url = default_storage.url(saved)
 
-        # actualiza DataJson.fotos
         payload = json.loads(reg.DataJson)
-        fotos = payload.get("fotos", [])
-        # busca slot
+        body = payload.get("body")
+        if body is None:
+            body = payload
+        fotos = body.get("fotos", []) if isinstance(body, dict) else []
+
         found = False
         for f in fotos:
-            if int(f.get("slot", 0)) == slot:
+            if isinstance(f, dict) and int(f.get("slot", 0)) == slot:
                 f["serverUrl"] = url
                 found = True
                 break
         if not found:
             fotos.append({"slot": slot, "serverUrl": url})
-        payload["fotos"] = fotos
+        body["fotos"] = fotos
+        if "body" in payload:
+            payload["body"] = body
+        else:
+            payload["fotos"] = fotos
 
         reg.DataJson = json.dumps(payload, ensure_ascii=False)
         reg.UpdatedAt = timezone.now()
         reg.save(update_fields=["DataJson", "UpdatedAt"])
 
-        return Response({"slot": slot, "serverUrl": url}, status=200)
-
-
+        return Response({"slot": slot, "serverUrl": url}, status=status.HTTP_200_OK)

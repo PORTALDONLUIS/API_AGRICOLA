@@ -33,7 +33,8 @@ def bootstrap(request):
                 AREA_TOTAL,
                 ID_FUNDO,
                 ID_VARIEDAD,
-                CECO
+                CECO,
+                Geom.STAsText() AS GEOM_WKT
             FROM dbo.LOTE
             ORDER BY ID_LOTE DESC
         """)
