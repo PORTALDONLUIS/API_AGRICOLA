@@ -67,10 +67,10 @@ AUTH_USER_MODEL = "user.User"
 DATABASES = {
     "default": {
         "ENGINE": "mssql",
-        "NAME": "PORTAL_AEI",
+        "NAME": "master",
         "USER": "sa",
         "PASSWORD": "@SADL.2023",
-        "HOST": "192.168.0.5",
+        "HOST": "192.168.0.3",
         "PORT": "1433",
         "OPTIONS": {
             "driver": "ODBC Driver 17 for SQL Server",
@@ -80,10 +80,10 @@ DATABASES = {
     # opcional: si tu código usa connections["PORTAL_AEI"]
     "PORTAL_AEI": {
         "ENGINE": "mssql",
-        "NAME": "PORTAL_AEI",
+        "NAME": "master",
         "USER": "sa",
         "PASSWORD": "@SADL.2023",
-        "HOST": "192.168.0.5",
+        "HOST": "192.168.0.3",
         "PORT": "1433",
         "OPTIONS": {
             "driver": "ODBC Driver 17 for SQL Server",
