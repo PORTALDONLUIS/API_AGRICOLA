@@ -67,7 +67,7 @@ AUTH_USER_MODEL = "user.User"
 DATABASES = {
     "default": {
         "ENGINE": "mssql",
-        "NAME": "master",
+        "NAME": "APP_AGRICOLA",
         "USER": "sa",
         "PASSWORD": "@SADL.2023",
         "HOST": "192.168.0.3",
@@ -80,7 +80,7 @@ DATABASES = {
     # opcional: si tu código usa connections["PORTAL_AEI"]
     "PORTAL_AEI": {
         "ENGINE": "mssql",
-        "NAME": "master",
+        "NAME": "APP_AGRICOLA",
         "USER": "sa",
         "PASSWORD": "@SADL.2023",
         "HOST": "192.168.0.3",
@@ -115,3 +115,60 @@ CORS_ALLOW_ALL_ORIGINS = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_URL = 'static/'
+
+# Logging: escribir todos los errores en donluis_errors.log
+LOGS_DIR = BASE_DIR / 'logs'
+LOGS_DIR.mkdir(exist_ok=True)
+LOGFILE = LOGS_DIR / 'donluis_errors.log'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '[{asctime}] {levelname} {name} {message}',
+            'style': '{',
+            'datefmt': '%Y-%m-%d %H:%M:%S',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': str(LOGFILE),
+            'formatter': 'verbose',
+            'encoding': 'utf-8',
+        },
+        'file_debug': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': str(LOGS_DIR / 'donluis_debug.log'),
+            'formatter': 'verbose',
+            'encoding': 'utf-8',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file', 'console'],
+            'level': 'ERROR',
+        },
+        'django.request': {
+            'handlers': ['file', 'console'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'api': {
+            'handlers': ['file', 'console'],
+            'level': 'ERROR',
+        },
+        '': {
+            'handlers': ['file', 'console'],
+            'level': 'ERROR',
+        },
+    },
+}

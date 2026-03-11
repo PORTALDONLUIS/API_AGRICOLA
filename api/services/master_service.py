@@ -40,7 +40,29 @@ def bootstrap(request):
         """)
         lotes = dictfetchall(cursor)
 
+        # Orillas por lote (BRIX)
+        lote_orillas = []
+        for table_name in ("dbo.LOTE_ORILLA_CATALOGO", "dbo.LOTE_ORILLAS", "dbo.LOTE_ORILLAS_CATALOGO"):
+            try:
+                cursor.execute(f"""
+                    SELECT
+                        ID_LOTE_ORILLA,
+                        ID_LOTE,
+                        ORILLA_CODIGO,
+                        ORILLA_LABEL,
+                        PERIMETRAL_DESCRIPCION,
+                        ACTIVO
+                    FROM {table_name}
+                    WHERE ACTIVO = 1
+                    ORDER BY ID_LOTE, ORILLA_CODIGO
+                """)
+                lote_orillas = dictfetchall(cursor)
+                break
+            except Exception:
+                continue
+
     return Response({
         "campanias": campanias,
-        "lotes": lotes
+        "lotes": lotes,
+        "loteOrillas": lote_orillas
     })
