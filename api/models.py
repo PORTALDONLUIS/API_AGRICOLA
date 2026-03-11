@@ -18,7 +18,7 @@ class Plantilla(models.Model):
 
     class Meta:
         managed = False
-        db_table = "dbo.Plantilla"
+        db_table = "Plantilla"
 
 
 class UserPlantilla(models.Model):
@@ -45,7 +45,7 @@ class UserPlantilla(models.Model):
 
     class Meta:
         managed = False
-        db_table = "dbo.UserPlantilla"
+        db_table = "UserPlantilla"
         unique_together = (("user", "plantilla"),)
 
 class PlantillaRegistro(models.Model):
@@ -70,7 +70,7 @@ class PlantillaRegistro(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dbo.PlantillaRegistro'
+        db_table = 'PlantillaRegistro'
 
 
 class Campania(models.Model):
