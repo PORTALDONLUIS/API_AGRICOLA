@@ -114,6 +114,10 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Fecha/hora: alinear con campo Perú (UTC−5) para admin/API visibles y aware datetimes
+USE_TZ = True
+TIME_ZONE = 'America/Lima'
+
 STATIC_URL = 'static/'
 
 # Logging: escribir todos los errores en donluis_errors.log

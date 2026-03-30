@@ -1,16 +1,20 @@
 import json
 import os
-from datetime import datetime, timezone as dt_timezone
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
+from django.db import connection
 from django.utils import timezone
 from rest_framework import status
 
 from api.models import UserPlantilla, Plantilla, PlantillaRegistro
+from api.operational_timezone_pe import (
+    fecha_ejecucion_naive_lima_desde_epoch_ms,
+    instante_naive_lima_desde_utc_aware,
+)
 from api.serializers.registros_sync_serializers import SyncRegistroInSerializer
 from api.services.plantillas_service import obtener_plantillas_asignadas
 from api.serializers.plantillas_serializers import PlantillaAssignedSerializer
@@ -90,33 +94,28 @@ class SyncRegistroView(APIView):
                 status=status.HTTP_409_CONFLICT
             )
 
+        # Instantáneo servidor (UTC aware). Django+USE_TZ guardaría en SQL como UTC;
+        # reescribimos después con UPDATE en hora civil Perú para que SSMS muestre 29/03 22:42, no 30/03 03:42.
         now = timezone.now()
+        lima_now_naive = instante_naive_lima_desde_utc_aware(now)
 
-        # 4) Determinar fecha de ejecución desde el payload (header.fechaEjecucion en epoch ms UTC)
         header = payload.get("header") or {}
         fecha_ejecucion_ms = None
         if isinstance(header, dict):
             fecha_ejecucion_ms = header.get("fechaEjecucion")
-        # compatibilidad: si alguien envía aún fechaEjecucion plano en el body del request
         if fecha_ejecucion_ms is None:
             fecha_ejecucion_ms = data.get("fechaEjecucion")
 
-        fecha_ejecucion_dt = None
+        lima_ejec_naive = None
         if isinstance(fecha_ejecucion_ms, (int, float)) and fecha_ejecucion_ms > 0:
-            try:
-                fecha_ejecucion_dt = datetime.fromtimestamp(
-                    fecha_ejecucion_ms / 1000.0,
-                    tz=dt_timezone.utc,
-                )
-            except (OverflowError, ValueError, OSError, TypeError):
-                fecha_ejecucion_dt = None
+            lima_ejec_naive = fecha_ejecucion_naive_lima_desde_epoch_ms(fecha_ejecucion_ms)
 
         # 5) Insertar en PlantillaRegistro (OJO: aquí SÍ se usan los campos PascalCase del modelo)
         registro = PlantillaRegistro.objects.create(
             PlantillaId=plantilla.id,                 # PlantillaId int
             UserId=request.user.id,                   # UserId int
             FechaRegistro=now,
-            FechaEjecucion=fecha_ejecucion_dt,
+            FechaEjecucion=lima_ejec_naive,
             CampaniaId=data.get("campaniaId"),
             LoteId=data.get("loteId"),
             Lat=data.get("lat"),
@@ -136,6 +135,26 @@ class SyncRegistroView(APIView):
         # Si quieres que ServerRegistroId = RegistroId (como venías haciendo):
         registro.ServerRegistroId = registro.RegistroId
         registro.save(update_fields=["ServerRegistroId"])
+
+        # Escribir fechas como hora local Perú literal (evita conversión ORM a UTC en datetime2).
+        with connection.cursor() as cursor:
+            cursor.execute(
+                """
+                UPDATE dbo.PlantillaRegistro
+                SET FechaRegistro = %s,
+                    FechaEjecucion = %s,
+                    CreatedAt = %s,
+                    UpdatedAt = %s
+                WHERE RegistroId = %s
+                """,
+                [
+                    lima_now_naive,
+                    lima_ejec_naive,
+                    lima_now_naive,
+                    lima_now_naive,
+                    registro.RegistroId,
+                ],
+            )
 
         return Response(
             {"serverRegistroId": int(registro.RegistroId), "syncStatus": "synced"},
