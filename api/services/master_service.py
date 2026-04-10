@@ -30,6 +30,11 @@ def bootstrap(request):
             SELECT
                 ID_LOTE,
                 DESCRIPCION,
+                CODIGO_LOTE,
+                LOTE,
+                SUB_LOTE,
+                CULTIVO,
+                ESTADO,
                 AREA_TOTAL,
                 ID_FUNDO,
                 ID_VARIEDAD,
@@ -61,8 +66,45 @@ def bootstrap(request):
             except Exception:
                 continue
 
+        # Variedades (catálogo maestro)
+        variedades = []
+        variedad_queries = (
+            """
+                SELECT
+                    ID,
+                    DESCRIPCION,
+                    FECHA_CREACION
+                FROM dbo.VARIEDAD
+                ORDER BY ID DESC
+            """,
+            """
+                SELECT
+                    ID_VARIEDAD AS ID,
+                    DESCRIPCION,
+                    FECHA_CREACION
+                FROM dbo.VARIEDAD
+                ORDER BY ID_VARIEDAD DESC
+            """,
+            """
+                SELECT
+                    ID,
+                    DESCRIPCION,
+                    FECHA_CREACION
+                FROM dbo.VARIEDADES
+                ORDER BY ID DESC
+            """,
+        )
+        for q in variedad_queries:
+            try:
+                cursor.execute(q)
+                variedades = dictfetchall(cursor)
+                break
+            except Exception:
+                continue
+
     return Response({
         "campanias": campanias,
         "lotes": lotes,
-        "loteOrillas": lote_orillas
+        "loteOrillas": lote_orillas,
+        "variedades": variedades,
     })
