@@ -66,7 +66,7 @@ AUTH_USER_MODEL = "user.User"
 
 DATABASES = {
     "default": {
-        "ENGINE": "mssql",
+        "ENGINE": "sql_server.pyodbc",
         "NAME": "APP_AGRICOLA",
         "USER": "sa",
         "PASSWORD": "@SADL.2023",
@@ -79,7 +79,7 @@ DATABASES = {
 
     # opcional: si tu código usa connections["PORTAL_AEI"]
     "PORTAL_AEI": {
-        "ENGINE": "mssql",
+        "ENGINE": "sql_server.pyodbc",
         "NAME": "APP_AGRICOLA",
         "USER": "sa",
         "PASSWORD": "@SADL.2023",

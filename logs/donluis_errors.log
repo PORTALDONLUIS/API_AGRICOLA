@@ -196,3 +196,26 @@ Traceback (most recent call last):
   File "A:\@Sociedad Agricola Don Luis\donluis_workspace\services\api\.venv\lib\site-packages\django\http\request.py", line 202, in get_host
     raise DisallowedHost(msg)
 django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.130:8000'. You may need to add '192.168.0.130' to ALLOWED_HOSTS.
+[2026-03-16 23:46:09] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[2026-03-16 23:46:09] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[2026-03-17 00:51:34] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[2026-03-17 00:51:34] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[2026-03-17 00:54:13] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[2026-03-17 00:54:13] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[2026-03-17 07:29:45] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[2026-03-17 07:29:45] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[2026-03-17 08:20:58] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[2026-03-17 08:20:58] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[2026-03-17 09:24:42] ERROR django.request Internal Server Error: /api/auth/login/
+[2026-03-17 09:24:42] ERROR django.server "POST /api/auth/login/ HTTP/1.1" 500 43
+[2026-03-17 09:24:42] ERROR django.server "POST /api/auth/login/ HTTP/1.1" 500 43
