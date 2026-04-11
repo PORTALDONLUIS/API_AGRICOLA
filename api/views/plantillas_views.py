@@ -1,5 +1,5 @@
 import json
-import os
+import uuid
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -20,6 +20,33 @@ from api.services.plantillas_service import obtener_plantillas_asignadas
 from api.serializers.plantillas_serializers import PlantillaAssignedSerializer
 from django.core.files.storage import default_storage
 from rest_framework.parsers import MultiPartParser, FormParser
+
+
+def _delete_previous_fotos_for_slot(storage, folder: str, slot: int) -> None:
+    """
+    Elimina en almacenamiento los archivos previos del mismo slot dentro de [folder]:
+    - legado: foto_{slot}.jpg
+    - actual: s{slot}_*.jpg (nombre único por subida)
+    """
+    try:
+        _, files = storage.listdir(folder)
+    except (NotImplementedError, OSError, FileNotFoundError):
+        return
+    legacy = f"foto_{slot}.jpg"
+    prefix = f"s{slot}_"
+    exts = (".jpg", ".jpeg", ".png", ".webp")
+    for name in files:
+        if not isinstance(name, str):
+            continue
+        lower = name.lower()
+        if name == legacy or (
+            name.startswith(prefix) and any(lower.endswith(e) for e in exts)
+        ):
+            try:
+                storage.delete(f"{folder}/{name}")
+            except OSError:
+                pass
+
 
 # class PlantillasAsignadasView(APIView):
 #     authentication_classes = [DebugJWTAuthentication]
@@ -162,7 +189,12 @@ class SyncRegistroView(APIView):
         )
 
 class UploadRegistroFotoView(APIView):
-    """Sube una foto para un registro. Requiere registro_id en URL y multipart: file, slot."""
+    """Sube una foto para un registro. Multipart: file, slot.
+
+    Guarda en ``registros/{registro_id}/s{slot}_{uuid}.jpg`` (único por subida).
+    Antes de guardar, elimina archivos previos del mismo slot (legado ``foto_{slot}.jpg``
+    o ``s{slot}_*.jpg``) para no acumular ni pisar URLs en DataJson.
+    """
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     parser_classes = [MultiPartParser, FormParser]
@@ -193,8 +225,10 @@ class UploadRegistroFotoView(APIView):
             return Response({"detail": "registro no existe"}, status=status.HTTP_404_NOT_FOUND)
 
         folder = f"registros/{registro_id}"
-        filename = f"foto_{slot}.jpg"
-        path = os.path.join(folder, filename)
+        # Nombre único por subida (evita pisar entre reemplazos / usuarios con el mismo slot).
+        _delete_previous_fotos_for_slot(default_storage, folder, slot)
+        filename = f"s{slot}_{uuid.uuid4().hex}.jpg"
+        path = f"{folder}/{filename}"
 
         saved = default_storage.save(path, file)
         url = default_storage.url(saved)
