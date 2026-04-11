@@ -66,7 +66,8 @@ AUTH_USER_MODEL = "user.User"
 
 DATABASES = {
     "default": {
-        "ENGINE": "sql_server.pyodbc",
+        # mssql-django (pip install mssql-django pyodbc); sustituye al antiguo sql_server.pyodbc
+        "ENGINE": "mssql",
         "NAME": "APP_AGRICOLA",
         "USER": "sa",
         "PASSWORD": "@SADL.2023",
@@ -79,7 +80,7 @@ DATABASES = {
 
     # opcional: si tu código usa connections["PORTAL_AEI"]
     "PORTAL_AEI": {
-        "ENGINE": "sql_server.pyodbc",
+        "ENGINE": "mssql",
         "NAME": "APP_AGRICOLA",
         "USER": "sa",
         "PASSWORD": "@SADL.2023",
