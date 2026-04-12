@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-...'
 DEBUG = True
-ALLOWED_HOSTS = ['localhost','192.168.0.3','38.250.176.122', '192.168.0.130']  # en dev; en prod pon tu dominio/IP
+ALLOWED_HOSTS = ['localhost','192.168.0.3','38.250.176.122']  # en dev; en prod pon tu dominio/IP
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -66,7 +66,6 @@ AUTH_USER_MODEL = "user.User"
 
 DATABASES = {
     "default": {
-        # mssql-django (pip install mssql-django pyodbc); sustituye al antiguo sql_server.pyodbc
         "ENGINE": "mssql",
         "NAME": "APP_AGRICOLA",
         "USER": "sa",
@@ -114,10 +113,6 @@ SIMPLE_JWT = {
 CORS_ALLOW_ALL_ORIGINS = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Fecha/hora: alinear con campo Perú (UTC−5) para admin/API visibles y aware datetimes
-USE_TZ = True
-TIME_ZONE = 'America/Lima'
 
 STATIC_URL = 'static/'
 
