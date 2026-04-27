@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-...'
 DEBUG = True
-ALLOWED_HOSTS = ['localhost','192.168.0.3','38.250.176.122','192.168.100.103']  # en dev; en prod pon tu dominio/IP
+ALLOWED_HOSTS = ['localhost','192.168.0.3','38.250.176.122','192.168.100.103', '192.168.0.197']  # en dev; en prod pon tu dominio/IP
 
 INSTALLED_APPS = [
     'django.contrib.admin',
