@@ -1,0 +1,5 @@
+[2026-04-26 16:36:56] DEBUG api.sync SYNC START user_id=6066 remote_addr=192.168.100.104 content_type=application/json
+[2026-04-26 16:36:56] DEBUG api.sync SYNC VALID template=cartilla-labor-desbrote payload_version=1 campania=None lote=10 header_keys=['loteId', 'fechaEjecucion'] body_keys=['variedad', 'pitonBrote', 'cargadores', 'materialViejo', 'piton', 'racimoSimple', 'racimoDoble', 'racimoIndefinido', 'totalBrotes', 'totalSimpleDoble', 'operario1', 'operario2', 'supervisor', 'hilera', 'planta', 'fotos']
+[2026-04-26 16:36:56] INFO api.sync SYNC OK registro_id=428 server_registro_id=428 template=cartilla-labor-desbrote user_id=6066
+[2026-04-26 16:36:57] DEBUG api.sync FOTO START registro_id=428 user_id=6066 remote_addr=192.168.100.104 content_type=multipart/form-data; boundary=--dio-boundary-2548015205
+[2026-04-26 16:36:58] INFO api.sync FOTO OK registro_id=428 slot=1 saved=registros/428/s1_dcf164d17be842cf9c5af56e39e44d4f.jpg url=/registros/428/s1_dcf164d17be842cf9c5af56e39e44d4f.jpg size=3541155
