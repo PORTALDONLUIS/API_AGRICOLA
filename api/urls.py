@@ -2,6 +2,12 @@ from django.urls import path
 
 from api.services.master_service import bootstrap
 from api.views.auth_views import login_view, refresh_view
+from api.views.persona_views import (
+    PersonaConsultarDniView,
+    PersonaDetailView,
+    PersonaListCreateView,
+    PersonaTipoListView,
+)
 from api.views.plantillas_views import PlantillasAsignadasView, SyncRegistroView, UploadRegistroFotoView
 
 urlpatterns = [
@@ -12,6 +18,11 @@ urlpatterns = [
 
     path("registros/sync/", SyncRegistroView.as_view()),
     path("registros/<int:registro_id>/fotos/", UploadRegistroFotoView.as_view()),
+
+    path("persona-tipos/", PersonaTipoListView.as_view(), name="persona_tipos"),
+    path("personas/", PersonaListCreateView.as_view(), name="personas"),
+    path("personas/consultar-dni/", PersonaConsultarDniView.as_view(), name="personas_consultar_dni"),
+    path("personas/<int:persona_id>/", PersonaDetailView.as_view(), name="persona_detail"),
 
     path("bootstrap", bootstrap, name="master-bootstrap"),
 

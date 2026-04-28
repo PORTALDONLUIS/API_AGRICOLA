@@ -1,11 +1,48 @@
+import os
 from datetime import timedelta
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+def _load_local_env():
+    env_path = BASE_DIR / ".env"
+    if not env_path.exists():
+        return
+
+    for raw_line in env_path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        value = value.strip().strip("'").strip('"')
+        if key and key not in os.environ:
+            os.environ[key] = value
+
+
+_load_local_env()
+
+def _load_local_env():
+    env_path = BASE_DIR / ".env"
+    if not env_path.exists():
+        return
+
+    for raw_line in env_path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        value = value.strip().strip("'").strip('"')
+        if key and key not in os.environ:
+            os.environ[key] = value
+
+
+_load_local_env()
+
 SECRET_KEY = 'django-insecure-...'
 DEBUG = True
-ALLOWED_HOSTS = ['localhost','192.168.0.3','38.250.176.122','192.168.100.103', '192.168.0.197']  # en dev; en prod pon tu dominio/IP
+ALLOWED_HOSTS = ['localhost','192.168.0.3','38.250.176.122','192.168.100.103', '192.168.0.197', '192.168.0.110']  # en dev; en prod pon tu dominio/IP
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -105,6 +142,8 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
+
+APIPERU_TOKEN = os.getenv("APIPERU_TOKEN", "")
 
 # Opcional: si tu API será consumida por Flutter en otro dominio/puerto:
 # pip install django-cors-headers

@@ -27,6 +27,7 @@ class AuthService:
                 "email": user.email,
                 "admin": getattr(user, "admin", False),
                 "is_superuser": user.is_superuser,
+                "is_superadmin": user.is_superuser,
                 "dni": getattr(user, "dni", None),
             }
         }

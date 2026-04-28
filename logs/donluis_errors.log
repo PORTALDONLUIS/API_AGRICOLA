@@ -1833,3 +1833,212 @@ Traceback (most recent call last):
   File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/http/request.py", line 151, in get_host
     raise DisallowedHost(msg)
 django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.100.103:8000'. You may need to add '192.168.100.103' to ALLOWED_HOSTS.
+[2026-04-28 10:37:58] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+[2026-04-28 10:37:58] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+[2026-04-28 10:38:17] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+[2026-04-28 10:38:17] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+[2026-04-28 10:38:17] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+[2026-04-28 10:38:17] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+[2026-04-28 10:38:17] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+[2026-04-28 10:38:17] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+[2026-04-28 10:38:17] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+[2026-04-28 10:38:17] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+[2026-04-28 10:38:44] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+[2026-04-28 10:38:44] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+[2026-04-28 10:38:44] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+[2026-04-28 10:38:44] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+[2026-04-28 10:38:44] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+[2026-04-28 10:38:44] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+[2026-04-28 10:38:44] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+[2026-04-28 10:38:44] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/cesarpalo/Workspace/Don Luis/App Cartillas/API_AGRICOLA/.venv/lib/python3.9/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.110:8000'. You may need to add '192.168.0.110' to ALLOWED_HOSTS.
+[2026-04-28 13:34:47] ERROR django.request Internal Server Error: /api/auth/login/
+[2026-04-28 13:34:47] ERROR django.server "POST /api/auth/login/ HTTP/1.1" 500 43
+[2026-04-28 13:34:47] ERROR django.server "POST /api/auth/login/ HTTP/1.1" 500 43
+[2026-04-28 13:35:27] ERROR django.request Internal Server Error: /api/auth/login/
+[2026-04-28 13:35:27] ERROR django.server "POST /api/auth/login/ HTTP/1.1" 500 43
+[2026-04-28 13:35:27] ERROR django.server "POST /api/auth/login/ HTTP/1.1" 500 43
+[2026-04-28 13:42:21] ERROR api.personas APIPERU_TOKEN no configurado
+[2026-04-28 13:42:21] ERROR api.personas APIPERU_TOKEN no configurado
+[2026-04-28 13:42:21] ERROR django.request Internal Server Error: /api/personas/consultar-dni/
+[2026-04-28 13:42:21] ERROR django.server "POST /api/personas/consultar-dni/ HTTP/1.1" 500 79
+[2026-04-28 13:42:21] ERROR django.server "POST /api/personas/consultar-dni/ HTTP/1.1" 500 79
