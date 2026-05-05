@@ -2042,3 +2042,499 @@ django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.110:
 [2026-04-28 13:42:21] ERROR django.request Internal Server Error: /api/personas/consultar-dni/
 [2026-04-28 13:42:21] ERROR django.server "POST /api/personas/consultar-dni/ HTTP/1.1" 500 79
 [2026-04-28 13:42:21] ERROR django.server "POST /api/personas/consultar-dni/ HTTP/1.1" 500 79
+[2026-04-30 13:45:35] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-04-30 13:45:35] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-04-30 13:45:37] ERROR django.server "PRI * HTTP/2.0" 505 -
+[2026-04-30 13:45:37] ERROR django.server "PRI * HTTP/2.0" 505 -
+[2026-04-30 13:45:53] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-04-30 13:45:53] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-04-30 13:58:53] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-04-30 13:58:53] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-04-30 13:58:53] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-04-30 13:58:53] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-04-30 14:29:53] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'proxy.flarevpn.digital:8080'. You may need to add 'proxy.flarevpn.digital' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'proxy.flarevpn.digital:8080'. You may need to add 'proxy.flarevpn.digital' to ALLOWED_HOSTS.
+[2026-04-30 14:29:53] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'proxy.flarevpn.digital:8080'. You may need to add 'proxy.flarevpn.digital' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'proxy.flarevpn.digital:8080'. You may need to add 'proxy.flarevpn.digital' to ALLOWED_HOSTS.
+[2026-04-30 14:29:54] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'proxy.flarevpn.digital:8080'. You may need to add 'proxy.flarevpn.digital' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'proxy.flarevpn.digital:8080'. You may need to add 'proxy.flarevpn.digital' to ALLOWED_HOSTS.
+[2026-04-30 14:29:54] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'proxy.flarevpn.digital:8080'. You may need to add 'proxy.flarevpn.digital' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'proxy.flarevpn.digital:8080'. You may need to add 'proxy.flarevpn.digital' to ALLOWED_HOSTS.
+[2026-04-30 15:25:40] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-04-30 15:25:40] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-04-30 22:20:37] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-04-30 22:20:37] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-01 05:48:14] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'api.ipify.org'. You may need to add 'api.ipify.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'api.ipify.org'. You may need to add 'api.ipify.org' to ALLOWED_HOSTS.
+[2026-05-01 05:48:14] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'api.ipify.org'. You may need to add 'api.ipify.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'api.ipify.org'. You may need to add 'api.ipify.org' to ALLOWED_HOSTS.
+[2026-05-01 05:48:26] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'www.shadowserver.org'. You may need to add 'www.shadowserver.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.shadowserver.org'. You may need to add 'www.shadowserver.org' to ALLOWED_HOSTS.
+[2026-05-01 05:48:26] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'www.shadowserver.org'. You may need to add 'www.shadowserver.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.shadowserver.org'. You may need to add 'www.shadowserver.org' to ALLOWED_HOSTS.
+[2026-05-01 05:52:37] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'proxy2.proxiesfood.com:443'. You may need to add 'proxy2.proxiesfood.com' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'proxy2.proxiesfood.com:443'. You may need to add 'proxy2.proxiesfood.com' to ALLOWED_HOSTS.
+[2026-05-01 05:52:37] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'proxy2.proxiesfood.com:443'. You may need to add 'proxy2.proxiesfood.com' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'proxy2.proxiesfood.com:443'. You may need to add 'proxy2.proxiesfood.com' to ALLOWED_HOSTS.
+[2026-05-01 05:52:37] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'proxy2.proxiesfood.com:443'. You may need to add 'proxy2.proxiesfood.com' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'proxy2.proxiesfood.com:443'. You may need to add 'proxy2.proxiesfood.com' to ALLOWED_HOSTS.
+[2026-05-01 05:52:37] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'proxy2.proxiesfood.com:443'. You may need to add 'proxy2.proxiesfood.com' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'proxy2.proxiesfood.com:443'. You may need to add 'proxy2.proxiesfood.com' to ALLOWED_HOSTS.
+[2026-05-01 05:52:38] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'proxy2.proxiesfood.com:443'. You may need to add 'proxy2.proxiesfood.com' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'proxy2.proxiesfood.com:443'. You may need to add 'proxy2.proxiesfood.com' to ALLOWED_HOSTS.
+[2026-05-01 05:52:38] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'proxy2.proxiesfood.com:443'. You may need to add 'proxy2.proxiesfood.com' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'proxy2.proxiesfood.com:443'. You may need to add 'proxy2.proxiesfood.com' to ALLOWED_HOSTS.
+[2026-05-01 06:30:03] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-01 06:30:03] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-01 11:50:19] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-01 11:50:19] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-01 14:25:11] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-01 14:25:11] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-01 14:25:11] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-01 14:25:11] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-01 14:53:35] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-01 14:53:35] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-01 14:53:35] ERROR django.server "PRI * HTTP/2.0" 505 -
+[2026-05-01 14:53:35] ERROR django.server "PRI * HTTP/2.0" 505 -
+[2026-05-01 14:53:48] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-01 14:53:48] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 01:33:59] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 01:33:59] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 01:35:12] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 01:35:12] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 04:12:12] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 04:12:12] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 04:12:13] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 04:12:13] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 05:45:23] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'api.ipify.org'. You may need to add 'api.ipify.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'api.ipify.org'. You may need to add 'api.ipify.org' to ALLOWED_HOSTS.
+[2026-05-02 05:45:23] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'api.ipify.org'. You may need to add 'api.ipify.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'api.ipify.org'. You may need to add 'api.ipify.org' to ALLOWED_HOSTS.
+[2026-05-02 05:45:33] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'www.shadowserver.org'. You may need to add 'www.shadowserver.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.shadowserver.org'. You may need to add 'www.shadowserver.org' to ALLOWED_HOSTS.
+[2026-05-02 05:45:33] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'www.shadowserver.org'. You may need to add 'www.shadowserver.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.shadowserver.org'. You may need to add 'www.shadowserver.org' to ALLOWED_HOSTS.
+[2026-05-02 15:52:55] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 15:52:55] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 15:52:57] ERROR django.server "PRI * HTTP/2.0" 505 -
+[2026-05-02 15:52:57] ERROR django.server "PRI * HTTP/2.0" 505 -
+[2026-05-02 15:53:02] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 15:53:02] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 18:17:45] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 18:17:45] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 23:10:21] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'TIC-SERVER03.agricoladonluis.com:8000'. You may need to add 'tic-server03.agricoladonluis.com' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'TIC-SERVER03.agricoladonluis.com:8000'. You may need to add 'tic-server03.agricoladonluis.com' to ALLOWED_HOSTS.
+[2026-05-02 23:10:21] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'TIC-SERVER03.agricoladonluis.com:8000'. You may need to add 'tic-server03.agricoladonluis.com' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'TIC-SERVER03.agricoladonluis.com:8000'. You may need to add 'tic-server03.agricoladonluis.com' to ALLOWED_HOSTS.
+[2026-05-02 23:10:21] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 23:10:21] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 23:10:21] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 23:10:21] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 23:10:22] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 23:10:22] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 23:10:22] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 23:10:22] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 23:43:50] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 23:43:50] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 23:43:53] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-02 23:43:53] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-03 01:26:39] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'TIC-SERVER03.agricoladonluis.com:8000'. You may need to add 'tic-server03.agricoladonluis.com' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'TIC-SERVER03.agricoladonluis.com:8000'. You may need to add 'tic-server03.agricoladonluis.com' to ALLOWED_HOSTS.
+[2026-05-03 01:26:39] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'TIC-SERVER03.agricoladonluis.com:8000'. You may need to add 'tic-server03.agricoladonluis.com' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'TIC-SERVER03.agricoladonluis.com:8000'. You may need to add 'tic-server03.agricoladonluis.com' to ALLOWED_HOSTS.
+[2026-05-03 01:26:39] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-03 01:26:39] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-03 01:26:39] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-03 01:26:39] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-03 01:26:40] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-03 01:26:40] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-03 01:26:40] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-03 01:26:40] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-03 01:48:34] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: '112.124.42.80:63435'. You may need to add '112.124.42.80' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '112.124.42.80:63435'. You may need to add '112.124.42.80' to ALLOWED_HOSTS.
+[2026-05-03 01:48:34] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: '112.124.42.80:63435'. You may need to add '112.124.42.80' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '112.124.42.80:63435'. You may need to add '112.124.42.80' to ALLOWED_HOSTS.
+[2026-05-03 03:04:37] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'api.ipify.org'. You may need to add 'api.ipify.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'api.ipify.org'. You may need to add 'api.ipify.org' to ALLOWED_HOSTS.
+[2026-05-03 03:04:37] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'api.ipify.org'. You may need to add 'api.ipify.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'api.ipify.org'. You may need to add 'api.ipify.org' to ALLOWED_HOSTS.
+[2026-05-03 03:04:46] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'www.shadowserver.org'. You may need to add 'www.shadowserver.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.shadowserver.org'. You may need to add 'www.shadowserver.org' to ALLOWED_HOSTS.
+[2026-05-03 03:04:46] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'www.shadowserver.org'. You may need to add 'www.shadowserver.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.shadowserver.org'. You may need to add 'www.shadowserver.org' to ALLOWED_HOSTS.
+[2026-05-03 03:37:47] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-03 03:37:47] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-03 15:20:31] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-03 15:20:31] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-03 15:20:32] ERROR django.server "PRI * HTTP/2.0" 505 -
+[2026-05-03 15:20:32] ERROR django.server "PRI * HTTP/2.0" 505 -
+[2026-05-03 15:20:37] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-03 15:20:37] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-03 21:24:57] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-03 21:24:57] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-03 21:39:04] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-03 21:39:04] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-04 00:05:50] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-04 00:05:50] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-04 00:08:09] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-04 00:08:09] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-04 00:23:41] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-04 00:23:41] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-04 04:15:17] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-04 04:15:17] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-04 05:39:37] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'api.ipify.org'. You may need to add 'api.ipify.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'api.ipify.org'. You may need to add 'api.ipify.org' to ALLOWED_HOSTS.
+[2026-05-04 05:39:37] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'api.ipify.org'. You may need to add 'api.ipify.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'api.ipify.org'. You may need to add 'api.ipify.org' to ALLOWED_HOSTS.
+[2026-05-04 05:39:48] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'www.shadowserver.org'. You may need to add 'www.shadowserver.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.shadowserver.org'. You may need to add 'www.shadowserver.org' to ALLOWED_HOSTS.
+[2026-05-04 05:39:48] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'www.shadowserver.org'. You may need to add 'www.shadowserver.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.shadowserver.org'. You may need to add 'www.shadowserver.org' to ALLOWED_HOSTS.
+[2026-05-04 13:29:21] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-04 13:29:21] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-04 13:29:22] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-04 13:29:22] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-04 13:53:59] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-04 13:53:59] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-04 15:47:13] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-04 15:47:13] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-04 15:47:17] ERROR django.server "PRI * HTTP/2.0" 505 -
+[2026-05-04 15:47:17] ERROR django.server "PRI * HTTP/2.0" 505 -
+[2026-05-04 15:48:05] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-04 15:48:05] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-04 19:05:08] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-04 19:05:08] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-04 19:05:09] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-04 19:05:09] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-04 19:42:31] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'api.ipify.org'. You may need to add 'api.ipify.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'api.ipify.org'. You may need to add 'api.ipify.org' to ALLOWED_HOSTS.
+[2026-05-04 19:42:31] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'api.ipify.org'. You may need to add 'api.ipify.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'api.ipify.org'. You may need to add 'api.ipify.org' to ALLOWED_HOSTS.
+[2026-05-04 19:42:38] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'www.shadowserver.org'. You may need to add 'www.shadowserver.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.shadowserver.org'. You may need to add 'www.shadowserver.org' to ALLOWED_HOSTS.
+[2026-05-04 19:42:38] ERROR django.security.DisallowedHost Invalid HTTP_HOST header: 'www.shadowserver.org'. You may need to add 'www.shadowserver.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\ADMINISTRADOR.AGRICOLADONLUIS\AppData\Local\Programs\Python\Python39\lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.shadowserver.org'. You may need to add 'www.shadowserver.org' to ALLOWED_HOSTS.
