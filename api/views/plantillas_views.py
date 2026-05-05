@@ -1,6 +1,7 @@
 import json
 import logging
 import uuid
+from typing import Optional
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -23,6 +24,17 @@ from django.core.files.storage import default_storage
 from rest_framework.parsers import MultiPartParser, FormParser
 
 logger = logging.getLogger("api.sync")
+
+
+def _normalize_client_record_id(raw_value) -> Optional[str]:
+    if raw_value is None:
+        return None
+    value = str(raw_value).strip()
+    return value or None
+
+
+def _build_legacy_client_record_id(user_id: int) -> str:
+    return f"legacy-{user_id}-{uuid.uuid4().hex}"
 
 
 def _delete_previous_fotos_for_slot(storage, folder: str, slot: int) -> None:
@@ -101,6 +113,10 @@ class SyncRegistroView(APIView):
             return Response({"errors": s.errors, "received": request.data}, status=400)
         data = s.validated_data
 
+        client_record_id = _normalize_client_record_id(data.get("clientRecordId"))
+        if client_record_id is None:
+            client_record_id = _build_legacy_client_record_id(request.user.id)
+
         template_key = data["templateKey"]
         payload_version = data.get("payloadVersion", 1)
         payload = data["dataJson"]
@@ -171,31 +187,58 @@ class SyncRegistroView(APIView):
             if isinstance(fecha_ejecucion_ms, (int, float)) and fecha_ejecucion_ms > 0:
                 lima_ejec_naive = fecha_ejecucion_naive_lima_desde_epoch_ms(fecha_ejecucion_ms)
 
-            # 5) Insertar en PlantillaRegistro (OJO: aquí SÍ se usan los campos PascalCase del modelo)
-            registro = PlantillaRegistro.objects.create(
-                PlantillaId=plantilla.id,                 # PlantillaId int
-                UserId=request.user.id,                   # UserId int
-                FechaRegistro=now,
-                FechaEjecucion=lima_ejec_naive,
-                CampaniaId=data.get("campaniaId"),
-                LoteId=data.get("loteId"),
-                Lat=data.get("lat"),
-                Lon=data.get("lon"),
-                Estado="synced",
-                # Tu BD exige isjson(DataJson)=1 → guardamos JSON string
-                DataJson=json.dumps(payload, ensure_ascii=False),
-                SyncStatus="synced",
-                SyncError=None,
-                SyncAttempts=0,
-                ServerRegistroId=None,
-                CreatedAt=now,
-                UpdatedAt=now,
-                DeletedAt=None
+            registro = (
+                PlantillaRegistro.objects.filter(
+                    UserId=request.user.id,
+                    ClientRecordId=client_record_id,
+                )
+                .order_by("-RegistroId")
+                .first()
             )
 
-            # Si quieres que ServerRegistroId = RegistroId (como venías haciendo):
-            registro.ServerRegistroId = registro.RegistroId
-            registro.save(update_fields=["ServerRegistroId"])
+            if registro is None:
+                registro = PlantillaRegistro.objects.create(
+                    ClientRecordId=client_record_id,
+                    PlantillaId=plantilla.id,                 # PlantillaId int
+                    UserId=request.user.id,                   # UserId int
+                    FechaRegistro=now,
+                    FechaEjecucion=lima_ejec_naive,
+                    CampaniaId=data.get("campaniaId"),
+                    LoteId=data.get("loteId"),
+                    Lat=data.get("lat"),
+                    Lon=data.get("lon"),
+                    Estado="synced",
+                    # Tu BD exige isjson(DataJson)=1 → guardamos JSON string
+                    DataJson=json.dumps(payload, ensure_ascii=False),
+                    SyncStatus="synced",
+                    SyncError=None,
+                    SyncAttempts=0,
+                    ServerRegistroId=None,
+                    CreatedAt=now,
+                    UpdatedAt=now,
+                    DeletedAt=None
+                )
+                registro.ServerRegistroId = registro.RegistroId
+                registro.save(update_fields=["ServerRegistroId"])
+            else:
+                registro.ClientRecordId = client_record_id
+                registro.PlantillaId = plantilla.id
+                registro.FechaRegistro = now
+                registro.FechaEjecucion = lima_ejec_naive
+                registro.CampaniaId = data.get("campaniaId")
+                registro.LoteId = data.get("loteId")
+                registro.Lat = data.get("lat")
+                registro.Lon = data.get("lon")
+                registro.Estado = "synced"
+                registro.DataJson = json.dumps(payload, ensure_ascii=False)
+                registro.SyncStatus = "synced"
+                registro.SyncError = None
+                registro.SyncAttempts = 0
+                registro.UpdatedAt = now
+                registro.DeletedAt = None
+                if not registro.ServerRegistroId:
+                    registro.ServerRegistroId = registro.RegistroId
+                registro.save()
 
             # Escribir fechas como hora local Perú literal (evita conversión ORM a UTC en datetime2).
             with connection.cursor() as cursor:
@@ -235,8 +278,67 @@ class SyncRegistroView(APIView):
         )
 
         return Response(
-            {"serverRegistroId": int(registro.RegistroId), "syncStatus": "synced"},
+            {
+                "clientRecordId": client_record_id,
+                "serverRegistroId": int(registro.RegistroId),
+                "syncStatus": "synced",
+            },
             status=status.HTTP_200_OK
+        )
+
+
+class DeleteRegistroByClientIdView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, client_record_id: str):
+        normalized = _normalize_client_record_id(client_record_id)
+        if normalized is None:
+            return Response(
+                {"detail": "clientRecordId inválido"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        registro = (
+            PlantillaRegistro.objects.filter(
+                UserId=request.user.id,
+                ClientRecordId=normalized,
+            )
+            .order_by("-RegistroId")
+            .first()
+        )
+        if registro is None:
+            logger.warning(
+                "DELETE REGISTRO_NOT_FOUND client_record_id=%s user_id=%s",
+                normalized,
+                request.user.id,
+            )
+            return Response(
+                {"detail": "registro no existe"},
+                status=status.HTTP_404_NOT_FOUND,
+            )
+
+        now = timezone.now()
+        registro.DeletedAt = now
+        registro.UpdatedAt = now
+        registro.Estado = "deleted"
+        registro.SyncStatus = "deleted"
+        registro.SyncError = None
+        registro.save(update_fields=["DeletedAt", "UpdatedAt", "Estado", "SyncStatus", "SyncError"])
+
+        logger.info(
+            "DELETE REGISTRO_OK client_record_id=%s registro_id=%s user_id=%s",
+            normalized,
+            registro.RegistroId,
+            request.user.id,
+        )
+        return Response(
+            {
+                "clientRecordId": normalized,
+                "serverRegistroId": int(registro.RegistroId),
+                "deleted": True,
+            },
+            status=status.HTTP_200_OK,
         )
 
 class UploadRegistroFotoView(APIView):

@@ -50,6 +50,7 @@ class UserPlantilla(models.Model):
 
 class PlantillaRegistro(models.Model):
     RegistroId = models.BigAutoField(primary_key=True)
+    ClientRecordId = models.CharField(max_length=64, null=True, blank=True)
     PlantillaId = models.IntegerField()
     UserId = models.IntegerField()
     FechaRegistro = models.DateTimeField()
