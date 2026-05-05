@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 .venv/
 __pycache__/
 *.pyc
 .env
 *.log
 .idea/
-=======
-.env
->>>>>>> 1d08e92 (agregado modulo de personas sincroniza con db y con apidev)
