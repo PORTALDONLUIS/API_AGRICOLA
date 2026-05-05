@@ -8,7 +8,12 @@ from api.views.persona_views import (
     PersonaListCreateView,
     PersonaTipoListView,
 )
-from api.views.plantillas_views import PlantillasAsignadasView, SyncRegistroView, UploadRegistroFotoView
+from api.views.plantillas_views import (
+    DeleteRegistroByClientIdView,
+    PlantillasAsignadasView,
+    SyncRegistroView,
+    UploadRegistroFotoView,
+)
 
 urlpatterns = [
     path('auth/login/', login_view, name='auth_login'),
@@ -17,6 +22,7 @@ urlpatterns = [
     path("auth/refresh/", refresh_view),
 
     path("registros/sync/", SyncRegistroView.as_view()),
+    path("registros/by-client/<str:client_record_id>/", DeleteRegistroByClientIdView.as_view()),
     path("registros/<int:registro_id>/fotos/", UploadRegistroFotoView.as_view()),
 
     path("persona-tipos/", PersonaTipoListView.as_view(), name="persona_tipos"),

@@ -2,6 +2,12 @@ from rest_framework import serializers
 
 
 class SyncRegistroInSerializer(serializers.Serializer):
+    clientRecordId = serializers.CharField(
+        max_length=64,
+        required=False,
+        allow_blank=True,
+        allow_null=True,
+    )
     templateKey = serializers.CharField(max_length=100)
     payloadVersion = serializers.IntegerField(required=False, default=1)
     dataJson = serializers.JSONField()
