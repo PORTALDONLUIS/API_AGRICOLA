@@ -369,12 +369,11 @@ class PersonaDetailView(SuperadminRequiredMixin, PersonaPayloadMixin, APIView):
 
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class PersonaConsultarDniView(SuperadminRequiredMixin, APIView):
-    def post(self, request):
-        forbidden = self._ensure_superadmin(request)
-        if forbidden:
-            return forbidden
+class PersonaConsultarDniView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
+    def post(self, request):
         dni = str(request.data.get("dni", "")).strip()
         if not dni:
             return Response(
@@ -464,3 +463,89 @@ class PersonaConsultarDniView(SuperadminRequiredMixin, APIView):
         ]
         full_name = " ".join(part for part in parts if part).strip()
         return full_name or None
+
+
+class PersonaJornalUpsertView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        dni = str(request.data.get("dni", "")).strip()
+        nombre_completo = str(request.data.get("nombre_completo", "")).strip().upper()
+
+        if not dni:
+            return Response(
+                {"errors": {"dni": ["Este campo es requerido."]}},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        if not dni.isdigit() or len(dni) != 8:
+            return Response(
+                {"errors": {"dni": ["El DNI debe tener exactamente 8 dígitos."]}},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        if not nombre_completo:
+            return Response(
+                {"errors": {"nombre_completo": ["Este campo es requerido."]}},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        with connection.cursor() as cursor:
+            cursor.execute(
+                """
+                SELECT TOP 1 ID_PERSONA_TIPO
+                FROM dbo.PERSONA_TIPO
+                WHERE CODIGO = %s
+                  AND ESTADO = 1
+                """,
+                ["JOR"],
+            )
+            tipo_row = cursor.fetchone()
+            if not tipo_row:
+                return Response(
+                    {"detail": "No existe el tipo de persona JOR activo."},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+            tipo_id = tipo_row[0]
+
+            cursor.execute(
+                """
+                SELECT TOP 1 ID_PERSONA
+                FROM dbo.PERSONA
+                WHERE DNI = %s
+                """,
+                [dni],
+            )
+            existing = cursor.fetchone()
+
+            if existing:
+                persona_id = existing[0]
+                cursor.execute(
+                    """
+                    UPDATE dbo.PERSONA
+                    SET NOMBRE_COMPLETO = %s,
+                        ID_PERSONA_TIPO = %s,
+                        ESTADO = 1,
+                        UPDATED_AT = SYSUTCDATETIME()
+                    WHERE ID_PERSONA = %s
+                    """,
+                    [nombre_completo, tipo_id, persona_id],
+                )
+            else:
+                cursor.execute(
+                    """
+                    INSERT INTO dbo.PERSONA (
+                        DNI,
+                        NOMBRE_COMPLETO,
+                        ID_PERSONA_TIPO,
+                        ESTADO,
+                        CREATED_AT,
+                        UPDATED_AT
+                    )
+                    OUTPUT INSERTED.ID_PERSONA
+                    VALUES (%s, %s, %s, 1, SYSUTCDATETIME(), SYSUTCDATETIME())
+                    """,
+                    [dni, nombre_completo, tipo_id],
+                )
+                persona_id = cursor.fetchone()[0]
+
+        return PersonaPayloadMixin()._get_persona_response(persona_id, status.HTTP_200_OK)

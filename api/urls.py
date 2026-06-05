@@ -5,6 +5,7 @@ from api.views.auth_views import login_view, refresh_view
 from api.views.persona_views import (
     PersonaConsultarDniView,
     PersonaDetailView,
+    PersonaJornalUpsertView,
     PersonaListCreateView,
     PersonaTipoListView,
 )
@@ -28,6 +29,7 @@ urlpatterns = [
     path("persona-tipos/", PersonaTipoListView.as_view(), name="persona_tipos"),
     path("personas/", PersonaListCreateView.as_view(), name="personas"),
     path("personas/consultar-dni/", PersonaConsultarDniView.as_view(), name="personas_consultar_dni"),
+    path("personas/jornal/", PersonaJornalUpsertView.as_view(), name="personas_jornal"),
     path("personas/<int:persona_id>/", PersonaDetailView.as_view(), name="persona_detail"),
 
     path("bootstrap", bootstrap, name="master-bootstrap"),
