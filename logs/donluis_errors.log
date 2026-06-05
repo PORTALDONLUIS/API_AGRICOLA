@@ -2682,3 +2682,19 @@ Traceback (most recent call last):
 django.db.utils.ProgrammingError: ('42S22', "[42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid column name 'ClientRecordId'. (207) (SQLExecDirectW)")
 [2026-05-04 22:30:38] ERROR django.server "POST /api/registros/sync/ HTTP/1.1" 500 23876
 [2026-05-04 22:30:38] ERROR django.server "POST /api/registros/sync/ HTTP/1.1" 500 23876
+[2026-05-05 02:12:17] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-05 02:12:17] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-05 04:05:23] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-05 04:05:23] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-05 04:15:05] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-05 04:15:05] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-05 09:01:42] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-05 09:01:42] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-05 16:39:53] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-05 16:39:53] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-05 16:57:37] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-05 16:57:37] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-05 16:57:44] ERROR django.server "PRI * HTTP/2.0" 505 -
+[2026-05-05 16:57:44] ERROR django.server "PRI * HTTP/2.0" 505 -
+[2026-05-05 16:58:04] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
+[2026-05-05 16:58:04] ERROR django.server You're accessing the development server over HTTPS, but it only supports HTTP.
