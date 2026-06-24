@@ -152,10 +152,6 @@ class PersonaPayloadMixin:
 
 class PersonaTipoListView(SuperadminRequiredMixin, APIView):
     def get(self, request):
-        forbidden = self._ensure_superadmin(request)
-        if forbidden:
-            return forbidden
-
         with connection.cursor() as cursor:
             cursor.execute(
                 """
@@ -175,10 +171,6 @@ class PersonaTipoListView(SuperadminRequiredMixin, APIView):
 
 class PersonaListCreateView(SuperadminRequiredMixin, PersonaPayloadMixin, APIView):
     def get(self, request):
-        forbidden = self._ensure_superadmin(request)
-        if forbidden:
-            return forbidden
-
         filters = []
         params = []
 
