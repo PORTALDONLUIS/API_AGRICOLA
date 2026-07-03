@@ -102,9 +102,21 @@ def bootstrap(request):
             except Exception:
                 continue
 
+        actividad_labores = []
+        try:
+            cursor.execute("""
+                SELECT *
+                FROM dbo.vst_costo_rendimiento_actividad_labor
+                ORDER BY 1, 2
+            """)
+            actividad_labores = dictfetchall(cursor)
+        except Exception:
+            actividad_labores = []
+
     return Response({
         "campanias": campanias,
         "lotes": lotes,
         "loteOrillas": lote_orillas,
         "variedades": variedades,
+        "actividadLabores": actividad_labores,
     })
