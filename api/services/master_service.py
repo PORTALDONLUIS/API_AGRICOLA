@@ -15,6 +15,7 @@ def bootstrap(request):
     # Ajusta el alias si tu DB no se llama "default"
     # Ej: connections["sqlserver"]
     conn = connections["default"]
+    donluis_conn = connections["DONLUIS"]
 
     with conn.cursor() as cursor:
         cursor.execute("""
@@ -102,19 +103,82 @@ def bootstrap(request):
             except Exception:
                 continue
 
-        actividad_labores = []
-        actividad_labor_queries = (
-            """
-                SELECT *
+    actividad_labores = []
+    actividad_labor_queries = (
+        """
+            WITH ranked AS (
+                SELECT
+                    LTRIM(RTRIM(idempresa)) AS idempresa,
+                    LTRIM(RTRIM(idactividad)) AS actividadId,
+                    LTRIM(RTRIM(dsc_actividad)) AS actividadNombre,
+                    LTRIM(RTRIM(idlabor)) AS laborId,
+                    LTRIM(RTRIM(dsc_labor)) AS laborNombre,
+                    TRY_CONVERT(float, cantidad_periodo) AS rendimiento,
+                    LTRIM(RTRIM(medida_periodo)) AS medida,
+                    TRY_CONVERT(float, precio_periodo) AS costo,
+                    periodo,
+                    ROW_NUMBER() OVER (
+                        PARTITION BY idempresa, idactividad, idlabor
+                        ORDER BY periodo DESC, fecha_inicio DESC
+                    ) AS rn
                 FROM dbo.vst_costo_rendimiento_actividad_labor
-                ORDER BY 1, 2
-            """,
-            """
-                SELECT *
+                WHERE idactividad IS NOT NULL
+                  AND idlabor IS NOT NULL
+                  AND dsc_actividad IS NOT NULL
+                  AND dsc_labor IS NOT NULL
+            )
+            SELECT
+                idempresa,
+                actividadId,
+                actividadNombre,
+                laborId,
+                laborNombre,
+                rendimiento,
+                medida,
+                costo,
+                periodo
+            FROM ranked
+            WHERE rn = 1
+            ORDER BY actividadNombre, laborNombre
+        """,
+        """
+            WITH ranked AS (
+                SELECT
+                    LTRIM(RTRIM(idempresa)) AS idempresa,
+                    LTRIM(RTRIM(idactividad)) AS actividadId,
+                    LTRIM(RTRIM(dsc_actividad)) AS actividadNombre,
+                    LTRIM(RTRIM(idlabor)) AS laborId,
+                    LTRIM(RTRIM(dsc_labor)) AS laborNombre,
+                    TRY_CONVERT(float, cantidad_periodo) AS rendimiento,
+                    LTRIM(RTRIM(medida_periodo)) AS medida,
+                    TRY_CONVERT(float, precio_periodo) AS costo,
+                    periodo,
+                    ROW_NUMBER() OVER (
+                        PARTITION BY idempresa, idactividad, idlabor
+                        ORDER BY periodo DESC, fecha_inicio DESC
+                    ) AS rn
                 FROM vst_costo_rendimiento_actividad_labor
-                ORDER BY 1, 2
-            """,
-        )
+                WHERE idactividad IS NOT NULL
+                  AND idlabor IS NOT NULL
+                  AND dsc_actividad IS NOT NULL
+                  AND dsc_labor IS NOT NULL
+            )
+            SELECT
+                idempresa,
+                actividadId,
+                actividadNombre,
+                laborId,
+                laborNombre,
+                rendimiento,
+                medida,
+                costo,
+                periodo
+            FROM ranked
+            WHERE rn = 1
+            ORDER BY actividadNombre, laborNombre
+        """,
+    )
+    with donluis_conn.cursor() as cursor:
         for q in actividad_labor_queries:
             try:
                 cursor.execute(q)

@@ -126,6 +126,18 @@ DATABASES = {
             "driver": "ODBC Driver 17 for SQL Server",
         },
     },
+
+    "DONLUIS": {
+        "ENGINE": "mssql",
+        "NAME": "DONLUIS",
+        "USER": "sa",
+        "PASSWORD": "@SADL.2023",
+        "HOST": "192.168.0.5",
+        "PORT": "1433",
+        "OPTIONS": {
+            "driver": "ODBC Driver 17 for SQL Server",
+        },
+    },
 }
 
 REST_FRAMEWORK = {
