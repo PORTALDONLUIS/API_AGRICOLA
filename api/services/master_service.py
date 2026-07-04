@@ -1,7 +1,11 @@
+import logging
+
 from django.db import connections
 from rest_framework.decorators import permission_classes, api_view
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+
+logger = logging.getLogger("api")
 
 
 def dictfetchall(cursor):
@@ -16,6 +20,7 @@ def bootstrap(request):
     # Ej: connections["sqlserver"]
     conn = connections["default"]
     donluis_conn = connections["DONLUIS"]
+    portal_aei_conn = connections["PORTAL_AEI"]
 
     with conn.cursor() as cursor:
         cursor.execute("""
@@ -187,10 +192,195 @@ def bootstrap(request):
             except Exception:
                 continue
 
+    topico_empresas = []
+    topico_pacientes = []
+    with donluis_conn.cursor() as cursor:
+        try:
+            cursor.execute("""
+                SELECT
+                    LTRIM(RTRIM(CAST(IDEMPRESA AS varchar(30)))) AS idEmpresa,
+                    LTRIM(RTRIM(CAST(RAZON_SOCIAL AS varchar(250)))) AS razonSocial,
+                    LTRIM(RTRIM(CAST(RUC AS varchar(30)))) AS ruc,
+                    LTRIM(RTRIM(CAST(nombre_corto AS varchar(120)))) AS nombreCorto,
+                    CASE
+                        WHEN ESTADO IS NULL THEN 1
+                        WHEN CAST(ESTADO AS varchar(20)) IN ('1', 'A', 'ACTIVO', 'True', 'true') THEN 1
+                        ELSE 0
+                    END AS activo
+                FROM dbo.EMPRESAS
+                ORDER BY IDEMPRESA
+            """)
+            topico_empresas = dictfetchall(cursor)
+        except Exception:
+            logger.exception("Error sincronizando tópico: empresas")
+            topico_empresas = []
+
+        try:
+            cursor.execute("""
+                WITH ranked_personal AS (
+                    SELECT
+                        p.*,
+                        ROW_NUMBER() OVER (
+                            PARTITION BY p.IDCODIGOGENERAL
+                            ORDER BY p.FECHA_INICIOPLANILLA DESC, p.FECHACREACION DESC
+                        ) AS rn
+                    FROM dbo.PERSONAL p
+                    WHERE p.IDCODIGOGENERAL IS NOT NULL
+                      AND (
+                        p.ESTADO IS NULL
+                        OR UPPER(LTRIM(RTRIM(CAST(p.ESTADO AS varchar(30))))) NOT IN (
+                            '0', 'I', 'INACTIVO', 'FALSE', 'BAJA', 'CESADO'
+                        )
+                      )
+                )
+                SELECT
+                    LTRIM(RTRIM(CAST(pg.IDCODIGOGENERAL AS varchar(30)))) AS idCodigoGeneral,
+                    LTRIM(RTRIM(CAST(pg.NRODOCUMENTO AS varchar(30)))) AS dni,
+                    LTRIM(RTRIM(CONCAT(
+                        COALESCE(CAST(pg.A_PATERNO AS varchar(120)), ''),
+                        ' ',
+                        COALESCE(CAST(pg.A_MATERNO AS varchar(120)), ''),
+                        ', ',
+                        COALESCE(CAST(pg.NOMBRES AS varchar(160)), '')
+                    ))) AS nombreCompleto,
+                    LTRIM(RTRIM(CAST(pg.SEXO AS varchar(30)))) AS genero,
+                    LTRIM(RTRIM(CAST(p.IDEMPRESA AS varchar(30)))) AS idEmpresa,
+                    LTRIM(RTRIM(CAST(e.RAZON_SOCIAL AS varchar(250)))) AS empresa,
+                    LTRIM(RTRIM(CAST(p.IDPLANILLA AS varchar(30)))) AS idPlanilla,
+                    LTRIM(RTRIM(CAST(pl.DESCRIPCION AS varchar(160)))) AS planilla,
+                    LTRIM(RTRIM(CAST(p.IDCARGO AS varchar(30)))) AS idCargo,
+                    LTRIM(RTRIM(CAST(cp.DESCRIPCION AS varchar(160)))) AS cargo,
+                    LTRIM(RTRIM(CAST(p.IDGRUPOTRABAJO AS varchar(30)))) AS idGrupoTrabajo,
+                    LTRIM(RTRIM(CAST(gt.DESCRIPCION AS varchar(160)))) AS area,
+                    1 AS activo
+                FROM dbo.PERSONAL_GENERAL pg
+                LEFT JOIN ranked_personal p
+                    ON p.IDCODIGOGENERAL = pg.IDCODIGOGENERAL
+                   AND p.rn = 1
+                LEFT JOIN dbo.EMPRESAS e
+                    ON e.IDEMPRESA = p.IDEMPRESA
+                LEFT JOIN dbo.PLANILLA pl
+                    ON pl.IDEMPRESA = p.IDEMPRESA
+                   AND pl.IDPLANILLA = p.IDPLANILLA
+                LEFT JOIN dbo.CARGOS_PERSONAL cp
+                    ON cp.IDEMPRESA = p.IDEMPRESA
+                   AND cp.IDCARGO = p.IDCARGO
+                LEFT JOIN dbo.GRUPO_TRABAJO gt
+                    ON gt.IDGRUPOTRABAJO = p.IDGRUPOTRABAJO
+                WHERE pg.IDCODIGOGENERAL IS NOT NULL
+                  AND LTRIM(RTRIM(COALESCE(CAST(pg.NOMBRES AS varchar(160)), ''))) <> ''
+                  AND (
+                    pg.ESTADO IS NULL
+                    OR UPPER(LTRIM(RTRIM(CAST(pg.ESTADO AS varchar(30))))) NOT IN (
+                        '0', 'I', 'INACTIVO', 'FALSE', 'BAJA', 'CESADO'
+                    )
+                  )
+                ORDER BY pg.A_PATERNO, pg.A_MATERNO, pg.NOMBRES
+            """)
+            topico_pacientes = dictfetchall(cursor)
+            if not topico_pacientes:
+                cursor.execute("""
+                    SELECT
+                        LTRIM(RTRIM(CAST(pg.IDCODIGOGENERAL AS varchar(30)))) AS idCodigoGeneral,
+                        LTRIM(RTRIM(CAST(pg.NRODOCUMENTO AS varchar(30)))) AS dni,
+                        LTRIM(RTRIM(CONCAT(
+                            COALESCE(CAST(pg.A_PATERNO AS varchar(120)), ''),
+                            ' ',
+                            COALESCE(CAST(pg.A_MATERNO AS varchar(120)), ''),
+                            ', ',
+                            COALESCE(CAST(pg.NOMBRES AS varchar(160)), '')
+                        ))) AS nombreCompleto,
+                        LTRIM(RTRIM(CAST(pg.SEXO AS varchar(30)))) AS genero,
+                        NULL AS idEmpresa,
+                        NULL AS empresa,
+                        NULL AS idPlanilla,
+                        NULL AS planilla,
+                        NULL AS idCargo,
+                        NULL AS cargo,
+                        NULL AS idGrupoTrabajo,
+                        NULL AS area,
+                        1 AS activo
+                    FROM dbo.PERSONAL_GENERAL pg
+                    WHERE pg.IDCODIGOGENERAL IS NOT NULL
+                      AND LTRIM(RTRIM(COALESCE(CAST(pg.NOMBRES AS varchar(160)), ''))) <> ''
+                      AND (
+                        pg.ESTADO IS NULL
+                        OR UPPER(LTRIM(RTRIM(CAST(pg.ESTADO AS varchar(30))))) NOT IN (
+                            '0', 'I', 'INACTIVO', 'FALSE', 'BAJA', 'CESADO'
+                        )
+                      )
+                    ORDER BY pg.A_PATERNO, pg.A_MATERNO, pg.NOMBRES
+                """)
+                topico_pacientes = dictfetchall(cursor)
+        except Exception:
+            logger.exception("Error sincronizando tópico: pacientes")
+            topico_pacientes = []
+
+    topico_consultas = []
+    topico_medicamentos = []
+    try:
+        with portal_aei_conn.cursor() as cursor:
+            cursor.execute("""
+                SELECT
+                    Codigo AS codigo,
+                    Descripcion AS descripcion,
+                    TipoAtencion AS tipoAtencion,
+                    1 AS activo
+                FROM dbo.TopicoConsultas
+                ORDER BY Descripcion
+            """)
+            topico_consultas = dictfetchall(cursor)
+
+            cursor.execute("""
+                SELECT
+                    Codigo AS codigo,
+                    Medicamento AS medicamento,
+                    TipoPresentacion AS tipoPresentacion,
+                    Lugar AS lugar,
+                    1 AS activo
+                FROM dbo.TopicoMedicamentos
+                ORDER BY Medicamento
+            """)
+            topico_medicamentos = dictfetchall(cursor)
+    except Exception:
+        logger.exception("Error sincronizando tópico desde PORTAL_AEI. Se intentará con default.")
+        try:
+            with conn.cursor() as cursor:
+                cursor.execute("""
+                    SELECT
+                        Codigo AS codigo,
+                        Descripcion AS descripcion,
+                        TipoAtencion AS tipoAtencion,
+                        1 AS activo
+                    FROM dbo.TopicoConsultas
+                    ORDER BY Descripcion
+                """)
+                topico_consultas = dictfetchall(cursor)
+
+                cursor.execute("""
+                    SELECT
+                        Codigo AS codigo,
+                        Medicamento AS medicamento,
+                        TipoPresentacion AS tipoPresentacion,
+                        Lugar AS lugar,
+                        1 AS activo
+                    FROM dbo.TopicoMedicamentos
+                    ORDER BY Medicamento
+                """)
+                topico_medicamentos = dictfetchall(cursor)
+        except Exception:
+            logger.exception("Error sincronizando tópico desde default.")
+            topico_consultas = []
+            topico_medicamentos = []
+
     return Response({
         "campanias": campanias,
         "lotes": lotes,
         "loteOrillas": lote_orillas,
         "variedades": variedades,
         "actividadLabores": actividad_labores,
+        "topicoEmpresas": topico_empresas,
+        "topicoPacientes": topico_pacientes,
+        "topicoConsultas": topico_consultas,
+        "topicoMedicamentos": topico_medicamentos,
     })

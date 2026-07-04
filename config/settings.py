@@ -117,10 +117,10 @@ DATABASES = {
     # opcional: si tu código usa connections["PORTAL_AEI"]
     "PORTAL_AEI": {
         "ENGINE": "mssql",
-        "NAME": "APP_AGRICOLA",
+        "NAME": "PORTAL_AEI",
         "USER": "sa",
         "PASSWORD": "@SADL.2023",
-        "HOST": "192.168.0.3",
+        "HOST": "192.168.0.5",
         "PORT": "1433",
         "OPTIONS": {
             "driver": "ODBC Driver 17 for SQL Server",
