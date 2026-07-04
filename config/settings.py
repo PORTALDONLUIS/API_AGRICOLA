@@ -114,8 +114,21 @@ DATABASES = {
         },
     },
 
-    # opcional: si tu código usa connections["PORTAL_AEI"]
+    # Compatibilidad: autenticación y usuarios siguen usando APP_AGRICOLA.
     "PORTAL_AEI": {
+        "ENGINE": "mssql",
+        "NAME": "APP_AGRICOLA",
+        "USER": "sa",
+        "PASSWORD": "@SADL.2023",
+        "HOST": "192.168.0.3",
+        "PORT": "1433",
+        "OPTIONS": {
+            "driver": "ODBC Driver 17 for SQL Server",
+        },
+    },
+
+    # Solo para tablas nuevas de tópico: TopicoConsultas y TopicoMedicamentos.
+    "TOPICO_PORTAL_AEI": {
         "ENGINE": "mssql",
         "NAME": "PORTAL_AEI",
         "USER": "sa",

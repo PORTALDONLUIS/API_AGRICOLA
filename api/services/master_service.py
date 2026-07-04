@@ -20,7 +20,7 @@ def bootstrap(request):
     # Ej: connections["sqlserver"]
     conn = connections["default"]
     donluis_conn = connections["DONLUIS"]
-    portal_aei_conn = connections["PORTAL_AEI"]
+    topico_portal_conn = connections["TOPICO_PORTAL_AEI"]
 
     with conn.cursor() as cursor:
         cursor.execute("""
@@ -319,7 +319,7 @@ def bootstrap(request):
     topico_consultas = []
     topico_medicamentos = []
     try:
-        with portal_aei_conn.cursor() as cursor:
+        with topico_portal_conn.cursor() as cursor:
             cursor.execute("""
                 SELECT
                     Codigo AS codigo,
@@ -343,7 +343,7 @@ def bootstrap(request):
             """)
             topico_medicamentos = dictfetchall(cursor)
     except Exception:
-        logger.exception("Error sincronizando tópico desde PORTAL_AEI. Se intentará con default.")
+        logger.exception("Error sincronizando tópico desde TOPICO_PORTAL_AEI. Se intentará con default.")
         try:
             with conn.cursor() as cursor:
                 cursor.execute("""
