@@ -34,20 +34,22 @@ def bootstrap(request):
 
         cursor.execute("""
             SELECT
-                ID_LOTE,
-                DESCRIPCION,
-                CODIGO_LOTE,
-                LOTE,
-                SUB_LOTE,
-                CULTIVO,
-                ESTADO,
-                AREA_TOTAL,
-                ID_FUNDO,
-                ID_VARIEDAD,
-                CECO,
-                Geom.STAsText() AS GEOM_WKT
-            FROM dbo.LOTE
-            ORDER BY ID_LOTE DESC
+                l.ID_LOTE,
+                l.DESCRIPCION,
+                l.CODIGO_LOTE,
+                l.LOTE,
+                l.SUB_LOTE,
+                l.CULTIVO,
+                l.ESTADO,
+                l.AREA_TOTAL,
+                l.ID_FUNDO,
+                f.DESCRIPCION AS FUNDO_DESCRIPCION,
+                l.ID_VARIEDAD,
+                l.CECO,
+                l.Geom.STAsText() AS GEOM_WKT
+            FROM dbo.LOTE l
+            LEFT JOIN dbo.FUNDO f ON f.ID_FUNDO = l.ID_FUNDO
+            ORDER BY l.ID_LOTE DESC
         """)
         lotes = dictfetchall(cursor)
 
