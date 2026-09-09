@@ -10,6 +10,7 @@ from api.views.persona_views import (
     PersonaTipoListView,
 )
 from api.views.plantillas_views import (
+    DownloadBrixMoscatelRegistrosView,
     DeleteRegistroByClientIdView,
     PlantillasAsignadasView,
     SyncRegistroView,
@@ -23,6 +24,7 @@ urlpatterns = [
     path("auth/refresh/", refresh_view),
 
     path("registros/sync/", SyncRegistroView.as_view()),
+    path("registros/brix-moscatel/descargar/", DownloadBrixMoscatelRegistrosView.as_view()),
     path("registros/by-client/<str:client_record_id>/", DeleteRegistroByClientIdView.as_view()),
     path("registros/<int:registro_id>/fotos/", UploadRegistroFotoView.as_view()),
 

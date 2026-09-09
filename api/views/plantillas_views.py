@@ -1,6 +1,7 @@
 import json
 import logging
 import uuid
+from datetime import datetime, time, timedelta
 from typing import Optional
 
 from rest_framework.views import APIView
@@ -285,6 +286,134 @@ class SyncRegistroView(APIView):
             },
             status=status.HTTP_200_OK
         )
+
+
+class DownloadBrixMoscatelRegistrosView(APIView):
+    """Entrega al teléfono la copia en nube de BRIX MOSCATEL del usuario actual.
+
+    Este endpoint se mantiene deliberadamente acotado a esta cartilla mientras se
+    valida el flujo de descarga. No expone muestras de otros usuarios ni de otras
+    cartillas.
+    """
+
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    _template_key = "cartilla_brix_moscatel"
+
+    def get(self, request):
+        try:
+            plantilla = Plantilla.objects.get(
+                codigo=self._template_key,
+                is_active=True,
+                deleted_at__isnull=True,
+            )
+        except Plantilla.DoesNotExist:
+            return Response(
+                {"detail": "Plantilla BRIX MOSCATEL no existe"},
+                status=status.HTTP_404_NOT_FOUND,
+            )
+
+        is_assigned = UserPlantilla.objects.filter(
+            user=request.user,
+            plantilla=plantilla,
+            deleted_at__isnull=True,
+        ).exists()
+        if not is_assigned:
+            return Response(
+                {"detail": "Plantilla no asignada al usuario"},
+                status=status.HTTP_403_FORBIDDEN,
+            )
+
+        try:
+            start_at, end_at = self._date_range(request)
+        except ValueError as error:
+            return Response(
+                {"detail": str(error)}, status=status.HTTP_400_BAD_REQUEST
+            )
+
+        base = PlantillaRegistro.objects.filter(
+            UserId=request.user.id,
+            PlantillaId=plantilla.id,
+        )
+        active = base.filter(DeletedAt__isnull=True)
+        deleted = base.filter(DeletedAt__isnull=False)
+        if start_at is not None:
+            # FechaEjecucion se conserva al borrar, por lo que el mismo rango
+            # permite reconciliar tanto registros vigentes como eliminados.
+            active = active.filter(
+                FechaEjecucion__gte=start_at,
+                FechaEjecucion__lt=end_at,
+            )
+            deleted = deleted.filter(
+                FechaEjecucion__gte=start_at,
+                FechaEjecucion__lt=end_at,
+            )
+
+        records = []
+        for registro in active.order_by("-RegistroId"):
+            try:
+                payload = json.loads(registro.DataJson)
+            except (TypeError, ValueError):
+                logger.warning(
+                    "DOWNLOAD INVALID_JSON registro_id=%s user_id=%s",
+                    registro.RegistroId,
+                    request.user.id,
+                )
+                continue
+            if not isinstance(payload, dict):
+                continue
+            records.append({
+                "serverRegistroId": int(registro.RegistroId),
+                "clientRecordId": registro.ClientRecordId,
+                "plantillaId": registro.PlantillaId,
+                "templateKey": self._template_key,
+                "campaniaId": registro.CampaniaId,
+                "loteId": registro.LoteId,
+                "lat": float(registro.Lat) if registro.Lat is not None else None,
+                "lon": float(registro.Lon) if registro.Lon is not None else None,
+                "dataJson": payload,
+                "createdAt": registro.CreatedAt.isoformat(),
+                "updatedAt": registro.UpdatedAt.isoformat(),
+            })
+
+        deleted_client_record_ids = list(
+            deleted.exclude(ClientRecordId__isnull=True)
+            .exclude(ClientRecordId="")
+            .values_list("ClientRecordId", flat=True)
+        )
+        logger.info(
+            "DOWNLOAD BRIX_MOSCATEL user_id=%s start=%s end=%s records=%s deleted=%s",
+            request.user.id,
+            start_at,
+            end_at,
+            len(records),
+            len(deleted_client_record_ids),
+        )
+        return Response({
+            "records": records,
+            "deletedClientRecordIds": deleted_client_record_ids,
+        })
+
+    def _date_range(self, request):
+        start_raw = request.query_params.get("startDate")
+        end_raw = request.query_params.get("endDate")
+        if not start_raw and not end_raw:
+            return None, None
+        if not start_raw or not end_raw:
+            raise ValueError("startDate y endDate son requeridos juntos")
+        try:
+            start_date = datetime.strptime(start_raw, "%Y-%m-%d").date()
+            end_date = datetime.strptime(end_raw, "%Y-%m-%d").date()
+        except ValueError:
+            raise ValueError("Las fechas deben usar el formato YYYY-MM-DD")
+        if end_date < start_date:
+            raise ValueError("La fecha final no puede ser anterior a la inicial")
+        if (end_date - start_date).days > 366:
+            raise ValueError("El rango máximo permitido es de 366 días")
+        start_at = datetime.combine(start_date, time.min)
+        end_at = datetime.combine(end_date + timedelta(days=1), time.min)
+        return start_at, end_at
 
 
 class DeleteRegistroByClientIdView(APIView):
