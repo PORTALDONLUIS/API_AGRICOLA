@@ -15,7 +15,8 @@ class PortalAeiRepository:
                     active,
                     is_superuser,
                     admin,
-                    dni
+                    dni,
+                    genero
                 FROM dbo.user_user
                 WHERE username = %s
             """, [username])
@@ -26,7 +27,7 @@ class PortalAeiRepository:
             return None
 
         (user_id, usuario, first_name, last_name, email,
-         password_hash, active, is_superuser, admin, dni) = row
+         password_hash, active, is_superuser, admin, dni, genero) = row
 
         if not active:
             return None
@@ -44,4 +45,5 @@ class PortalAeiRepository:
             "is_superuser": bool(is_superuser),
             "admin": bool(admin),
             "dni": dni,
+            "genero": (genero or "").strip().upper(),
         }

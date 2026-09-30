@@ -29,5 +29,6 @@ class AuthService:
                 "is_superuser": user.is_superuser,
                 "is_superadmin": user.is_superuser,
                 "dni": getattr(user, "dni", None),
+                "genero": portal_user.get("genero"),
             }
         }
