@@ -11,6 +11,7 @@ import struct
 
 
 BRIX_KEY = "cartilla_brix_moscatel"
+COMPACT_KEYS = frozenset((BRIX_KEY, "cartilla_cosecha_uva"))
 MAX_BATCH_BYTES = 512 * 1024
 MAX_BATCH_RECORDS = 50
 MAX_SAFE_INTEGER = 2 ** 53

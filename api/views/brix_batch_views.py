@@ -1,4 +1,4 @@
-"""Endpoint piloto separado: no modifica la sincronización de otras cartillas."""
+"""Protocolo compacto limitado explícitamente a Brix Moscatel y Cosecha Uva."""
 
 import io
 import logging
@@ -15,7 +15,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from api.models import Plantilla, UserPlantilla
 from api.serializers.brix_batch_serializers import BrixBatchInSerializer, BrixBatchRecordSerializer
-from api.services.brix_batch_codec import BRIX_KEY, MAX_BATCH_BYTES, normalize_template_key
+from api.services.brix_batch_codec import BRIX_KEY, COMPACT_KEYS, MAX_BATCH_BYTES, normalize_template_key
 from api.services.brix_batch_sync import BatchRecordError, prepare_record, store_record
 
 
@@ -58,16 +58,16 @@ class SyncBrixBatchView(APIView):
         if not serializer.is_valid():
             return Response({"detail": "Bloque inválido", "errors": serializer.errors}, status=400)
         data = serializer.validated_data
-        if normalize_template_key(data["key"]) != BRIX_KEY:
-            return Response({"detail": "Este protocolo está habilitado solo para Brix Moscatel."}, status=400)
+        if normalize_template_key(data["key"]) not in COMPACT_KEYS:
+            return Response({"detail": "Este protocolo está habilitado para Brix Moscatel y Cosecha Uva."}, status=400)
         try:
             plantilla = Plantilla.objects.get(
                 id=data["plantillaId"], is_active=True, deleted_at__isnull=True,
             )
         except Plantilla.DoesNotExist:
             return Response({"detail": "Plantilla no existe"}, status=404)
-        if normalize_template_key(plantilla.codigo) != BRIX_KEY:
-            return Response({"detail": "El ID no corresponde a Brix Moscatel."}, status=400)
+        if normalize_template_key(plantilla.codigo) != normalize_template_key(data["key"]):
+            return Response({"detail": "El ID no corresponde a la cartilla solicitada."}, status=400)
         if not UserPlantilla.objects.filter(
             user=request.user, plantilla=plantilla, deleted_at__isnull=True,
         ).exists():

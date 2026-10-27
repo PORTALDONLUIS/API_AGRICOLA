@@ -84,6 +84,12 @@ def prepare_record(contexts, record, plantilla, user_id):
             if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or abs(value) > limit:
                 raise BatchRecordError("invalid_coordinates")
         columns[column] = value
+    if plantilla.codigo.strip().lower().replace('-', '_') == 'cartilla_cosecha_uva':
+        from api.services.cosecha_uva import validate_payload
+        try:
+            validate_payload(payload)
+        except (ValueError, TypeError, KeyError) as exc:
+            raise BatchRecordError('invalid_cosecha_uva: ' + str(exc)) from exc
     return payload, capture_date, columns
 
 
