@@ -28,7 +28,7 @@ if not settings.configured:
     import django
     django.setup()
 
-from django.db import IntegrityError, connection
+from django.db import IntegrityError, connection, DatabaseError
 from django.urls import path
 from rest_framework.exceptions import ParseError
 from rest_framework.test import APIRequestFactory, force_authenticate
@@ -272,6 +272,16 @@ class ViewTests(unittest.TestCase):
             self.assertEqual(response.data["results"][0], ack)
             self.assertEqual(response.data["results"][1]["error"], "revision_mismatch")
             self.assertEqual(store.call_count, 1)
+
+    def test_web_lot_conflict_does_not_block_other_samples(self):
+        block=fixture_block()
+        block['records'].append(dict(block['records'][0],clientRecordId=str(uuid.uuid4())))
+        with patch('api.views.brix_batch_views.store_record',side_effect=[DatabaseError('SQL (51012)'),{'status':'synced'}]) as store:
+            response=self.post(block)
+        self.assertEqual(store.call_count,2)
+        self.assertEqual(response.data['results'][0]['status'],'conflict')
+        self.assertIn('DonTec Web',response.data['results'][0]['error'])
+        self.assertEqual(response.data['results'][1]['status'],'synced')
 
     def test_database_outage_does_not_repeat_fifty_connections(self):
         block = fixture_block()
@@ -580,6 +590,24 @@ class StoreTests(unittest.TestCase):
 
 
 class LegacyIsolationTests(unittest.TestCase):
+    def test_legacy_web_lot_conflict_returns_409(self):
+        from api.views.plantillas_views import SyncRegistroView
+        other=SimpleNamespace(id=98,codigo='cartilla_fitosanidad',version=1)
+        payload=dict(payloadVersion=1,header={'plantillaId':98,'userId':USER.id,'loteId':'123','fechaEjecucion':1793048400000},body={})
+        request=APIRequestFactory().post('/api/registros/sync/',dict(clientRecordId=UUID,templateKey=other.codigo,
+            payloadVersion=1,loteId='123',dataJson=payload),format='json')
+        force_authenticate(request,user=USER)
+        with patch('api.views.plantillas_views.Plantilla.objects.get',return_value=other), \
+             patch('api.views.plantillas_views.UserPlantilla.objects.filter') as assignment, \
+             patch('api.views.plantillas_views.PlantillaRegistro.objects.filter') as rows, \
+             patch('api.views.plantillas_views.PlantillaRegistro.objects.create',side_effect=DatabaseError('SQL (51012)')):
+            assignment.return_value.exists.return_value=True
+            rows.return_value.order_by.return_value.first.return_value=None
+            response=SyncRegistroView.as_view()(request)
+        self.assertEqual(response.status_code,409)
+        self.assertEqual(response.data['code'],'web_edit_conflict')
+        self.assertIn('DonTec Web',response.data['detail'])
+
     def test_legacy_endpoint_keeps_other_cartilla_and_string_lote_contract(self):
         from api.views.plantillas_views import SyncRegistroView
 

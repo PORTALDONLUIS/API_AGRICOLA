@@ -260,7 +260,11 @@ class SyncRegistroView(APIView):
                         registro.RegistroId,
                     ],
                 )
-        except Exception:
+        except Exception as error:
+            from api.services.web_edit_conflicts import web_edit_conflict
+            conflict=web_edit_conflict(error)
+            if conflict:
+                return Response({'detail':conflict,'code':'web_edit_conflict'},status=status.HTTP_409_CONFLICT)
             logger.exception(
                 "SYNC DB_ERROR template=%s user_id=%s campania=%s lote=%s",
                 template_key,

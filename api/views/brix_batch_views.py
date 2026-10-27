@@ -105,7 +105,14 @@ class SyncBrixBatchView(APIView):
                 ))
             except BatchRecordError as exc:
                 results.append(_error_result(raw, str(exc)))
-            except DatabaseError:
+            except DatabaseError as exc:
+                from api.services.web_edit_conflicts import web_edit_conflict
+                conflict=web_edit_conflict(exc)
+                if conflict:
+                    item=_error_result(raw,conflict)
+                    item['status']='conflict'
+                    results.append(item)
+                    continue
                 # Ante una caída no repetir 50 conexiones fallidas en el mismo POST.
                 logger.exception("BATCH DB_ERROR user_id=%s uuid=%s", request.user.id, record["clientRecordId"])
                 results.append(_error_result(raw, "database_unavailable"))
