@@ -1,6 +1,7 @@
 from django.urls import path
 
 from api.services.master_service import bootstrap
+from api.views.brix_batch_views import SyncBrixBatchView
 from api.views.auth_views import login_view, refresh_view
 from api.views.persona_views import (
     PersonaConsultarDniView,
@@ -24,6 +25,7 @@ urlpatterns = [
     path("auth/refresh/", refresh_view),
 
     path("registros/sync/", SyncRegistroView.as_view()),
+    path("registros/sync-batch/", SyncBrixBatchView.as_view(), name="registros_sync_batch"),
     path("registros/brix-moscatel/descargar/", DownloadBrixMoscatelRegistrosView.as_view()),
     path("registros/by-client/<str:client_record_id>/", DeleteRegistroByClientIdView.as_view()),
     path("registros/<int:registro_id>/fotos/", UploadRegistroFotoView.as_view()),
