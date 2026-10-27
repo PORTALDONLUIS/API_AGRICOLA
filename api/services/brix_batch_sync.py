@@ -10,6 +10,7 @@ import math
 
 from django.db import IntegrityError, connection, transaction
 from django.utils import timezone
+from rest_framework import serializers
 
 from api.models import PlantillaRegistro
 from api.operational_timezone_pe import (
@@ -21,6 +22,22 @@ from api.services.brix_batch_codec import canonical_revision, expand_record
 
 class BatchRecordError(ValueError):
     pass
+
+
+_LOTE_ID_COLUMN_FIELD = serializers.IntegerField(
+    min_value=-2147483648, max_value=2147483647, allow_null=True,
+)
+
+
+def _lote_id_for_column(value):
+    # El selector del APK guarda el ID como texto. Interpretar sólo el valor
+    # destinado a SQL, igual que el endpoint legacy, sin cambiar JSON ni hash.
+    if isinstance(value, bool):
+        raise BatchRecordError("invalid_lote")
+    try:
+        return _LOTE_ID_COLUMN_FIELD.run_validation(value)
+    except serializers.ValidationError as exc:
+        raise BatchRecordError("invalid_lote") from exc
 
 
 def prepare_record(contexts, record, plantilla, user_id):
@@ -53,14 +70,15 @@ def prepare_record(contexts, record, plantilla, user_id):
     for key, column in (("campaniaId", "CampaniaId"), ("loteId", "LoteId"),
                         ("lat", "Lat"), ("lon", "Lon")):
         value = record.get(key, header.get(key))
-        if key in header and key in record and header[key] != record[key]:
+        if key == "loteId":
+            value = _lote_id_for_column(value)
+            if key in header and key in record and _lote_id_for_column(header[key]) != value:
+                raise BatchRecordError("header_metadata_mismatch")
+        elif key in header and key in record and header[key] != record[key]:
             raise BatchRecordError("header_metadata_mismatch")
         if key == "campaniaId" and value is not None:
             if not isinstance(value, str) or len(value) > 8:
                 raise BatchRecordError("invalid_campania")
-        if key == "loteId" and value is not None:
-            if isinstance(value, bool) or not isinstance(value, int) or not -2147483648 <= value <= 2147483647:
-                raise BatchRecordError("invalid_lote")
         if key in ("lat", "lon") and value is not None:
             limit = 90 if key == "lat" else 180
             if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or abs(value) > limit:
