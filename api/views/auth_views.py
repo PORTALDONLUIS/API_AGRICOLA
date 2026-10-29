@@ -3,7 +3,9 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.exceptions import TokenError
+from rest_framework.exceptions import AuthenticationFailed
+from api.services.persistent_session import renew_session
 
 from api.serializers.auth_serializers import LoginSerializer
 from api.services.auth_service import AuthService
@@ -42,11 +44,8 @@ def refresh_view(request):
         )
 
     try:
-        refresh = RefreshToken(refresh_token)
-        return Response({
-            "access": str(refresh.access_token)
-        })
-    except Exception:
+        return Response(renew_session(refresh_token))
+    except (TokenError, AuthenticationFailed, TypeError, ValueError):
         return Response(
             {"error": "refresh inválido o expirado"},
             status=status.HTTP_401_UNAUTHORIZED
