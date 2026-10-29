@@ -244,4 +244,5 @@ LOGGING = {
 
 # Firma JWT configurable sin publicar claves en Git. Mantiene el comportamiento
 # anterior hasta la activación coordinada; TIC móvil rechaza una clave de prueba.
-SIMPLE_JWT['SIGNING_KEY'] = os.environ.get('DONTEC_JWT_SIGNING_KEY', SECRET_KEY)
+from .jwt_signing import resolver_firma
+SIMPLE_JWT['SIGNING_KEY'] = resolver_firma(SECRET_KEY)

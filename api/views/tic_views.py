@@ -1,5 +1,6 @@
 """Puente autenticado de cartillas TIC hacia el inventario único de DonTec Web."""
 import os
+import logging
 import re
 
 import requests
@@ -8,6 +9,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.settings import api_settings
+from config.jwt_signing import segura
 
 
 def plantillas_tic_activas(usuario):
@@ -20,13 +22,12 @@ def plantillas_tic_activas(usuario):
 def configuracion_segura_tic():
     if not str(api_settings.ALGORITHM).startswith('HS'):
         return True
-    key = api_settings.SIGNING_KEY
-    raw = key if isinstance(key, bytes) else str(key).encode('utf-8')
-    return len(raw) >= 32 and not raw.startswith(b'django-insecure-') and b'...' not in raw
+    return segura(api_settings.SIGNING_KEY)
 
 
 def configuracion_pendiente():
-    return Response({'error': 'TIC móvil requiere configurar una clave de sesión segura en la API. Los borradores se conservan.'}, status=503)
+    logging.getLogger(__name__).error('La API no terminó la preparación segura de sesiones TIC; revisar la configuración de arranque. No se habilitó una firma insegura.')
+    return Response({'error': 'El servicio de Asignaciones TIC no está disponible. Tus borradores siguen guardados. Comunícate con el área TIC.'}, status=503)
 
 
 @api_view(['GET'])
