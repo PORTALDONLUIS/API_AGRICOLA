@@ -17,8 +17,6 @@ def login_view(request):
     username = serializer.validated_data["username"]
     password = serializer.validated_data["password"]
 
-    print("LOGIN:", username)
-    print("Passw:", password)
 
     try:
         result = AuthService().login(username, password)
@@ -26,7 +24,6 @@ def login_view(request):
         print("AuthService EX:", repr(e))
         return Response({"error": "Error interno de autenticación"}, status=500)
 
-    print("RESULT:", bool(result))
 
     if not result:
         return Response({"error": "Credenciales inválidas"}, status=status.HTTP_401_UNAUTHORIZED)

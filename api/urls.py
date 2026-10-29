@@ -1,4 +1,5 @@
 from django.urls import path
+from api.views.tic_views import identidad_tic, puente_tic
 
 from api.services.master_service import bootstrap
 from api.views.brix_batch_views import SyncBrixBatchView
@@ -19,6 +20,9 @@ from api.views.plantillas_views import (
 )
 
 urlpatterns = [
+    path('tic/identidad/', identidad_tic, name='tic_identidad'),
+    path('tic/asignaciones/<str:recurso>/', puente_tic, name='tic_asignaciones'),
+    path('tic/asignaciones/<str:recurso>/<path:ident>/', puente_tic, name='tic_asignaciones_detalle'),
     path('auth/login/', login_view, name='auth_login'),
     path("plantillas/asignadas/", PlantillasAsignadasView.as_view(), name="plantillas_asignadas"),
 

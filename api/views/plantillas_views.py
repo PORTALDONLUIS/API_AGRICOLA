@@ -119,6 +119,9 @@ class SyncRegistroView(APIView):
             client_record_id = _build_legacy_client_record_id(request.user.id)
 
         template_key = data["templateKey"]
+        if str(template_key).strip().lower().replace('-', '_').startswith('cartilla_tic_'):
+            return Response({'errors': {'templateKey': ['Esta cartilla confirma movimientos TIC; utiliza su formulario de inventario. No se guarda como muestra agrícola.']}}, status=400)
+
         payload_version = data.get("payloadVersion", 1)
         payload = data["dataJson"]
         header = payload.get("header") or {}
