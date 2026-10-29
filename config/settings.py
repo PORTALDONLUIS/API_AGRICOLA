@@ -164,7 +164,9 @@ REST_FRAMEWORK = {
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=3),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    # Debe coincidir con la sesión de campo de la app. El access token sigue
+    # siendo corto y se renueva automáticamente con este refresh token.
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
 
