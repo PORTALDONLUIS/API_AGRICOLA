@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from rest_framework_simplejwt.tokens import RefreshToken
+from api.services.persistent_session import PersistentRefreshToken
 from api.repositories.portal_aei_repo import PortalAeiRepository
 
 class AuthService:
@@ -15,7 +15,9 @@ class AuthService:
         # Obtener el user real (ya existe en dbo.user_user)
         user = self.User.objects.get(username=portal_user["username"])
 
-        refresh = RefreshToken.for_user(user)
+        if not user.is_active:
+            return None
+        refresh = PersistentRefreshToken.for_user(user)
 
         return {
             "access_token": str(refresh.access_token),
