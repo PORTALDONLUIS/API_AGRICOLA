@@ -21,9 +21,23 @@ BEGIN
 END;
 GO
 
+IF EXISTS (SELECT 1 FROM dbo.CartillaPackingCalidadCatalogo
+           WHERE Tipo=N'PLANTA' AND UPPER(LTRIM(RTRIM(Valor)))=N'SUN FRUITS' AND Activo=1)
+BEGIN
+    UPDATE dbo.CartillaPackingCalidadCatalogo
+       SET Activo=0
+     WHERE Tipo=N'PLANTA' AND UPPER(LTRIM(RTRIM(Valor)))=N'ZOOMFLIX' AND Activo=1;
+END
+ELSE
+BEGIN
+    UPDATE dbo.CartillaPackingCalidadCatalogo
+       SET Valor=N'SUN FRUITS'
+     WHERE Tipo=N'PLANTA' AND UPPER(LTRIM(RTRIM(Valor)))=N'ZOOMFLIX' AND Activo=1;
+END;
+
 IF NOT EXISTS (SELECT 1 FROM dbo.CartillaPackingCalidadCatalogo
-               WHERE Tipo=N'PLANTA' AND UPPER(LTRIM(RTRIM(Valor)))=N'ZOOMFLIX' AND Activo=1)
+               WHERE Tipo=N'PLANTA' AND UPPER(LTRIM(RTRIM(Valor)))=N'SUN FRUITS' AND Activo=1)
     INSERT INTO dbo.CartillaPackingCalidadCatalogo
       (Tipo, Valor, CreadoPorUserId, Activo, CreadoEn)
-    VALUES (N'PLANTA', N'Zoomflix', 0, 1, SYSDATETIME());
+    VALUES (N'PLANTA', N'SUN FRUITS', 0, 1, SYSDATETIME());
 GO
