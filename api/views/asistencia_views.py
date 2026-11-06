@@ -73,10 +73,16 @@ def asistencia_sedes(request):
                 ORDER BY NOMBRE_SEDE, ID_SEDE
                 """
             )
-            sedes = [
-                {"id": row[0], "nombre": row[1], "empresaId": row[2]}
-                for row in cursor.fetchall()
-            ]
+            sedes = []
+            for row in cursor.fetchall():
+                name = str(row[1] or "").strip()
+                sedes.append(
+                    {
+                        "id": row[0],
+                        "nombre": name,
+                        "empresaId": row[2],
+                    }
+                )
     except Exception:
         logger.exception("No se pudieron obtener las sedes de asistencia")
         return Response(
