@@ -4,6 +4,7 @@ from api.views.tic_views import identidad_tic, puente_tic
 from api.services.master_service import bootstrap
 from api.views.brix_batch_views import SyncBrixBatchView
 from api.views.auth_views import login_view, refresh_view
+from api.views.asistencia_views import asistencia_marcar, asistencia_sedes
 from api.views.persona_views import (
     PersonaConsultarDniView,
     PersonaDetailView,
@@ -20,6 +21,8 @@ from api.views.plantillas_views import (
 )
 
 urlpatterns = [
+    path("asistencia/sedes/", asistencia_sedes, name="asistencia_sedes"),
+    path("asistencia/marcar/", asistencia_marcar, name="asistencia_marcar"),
     path('tic/identidad/', identidad_tic, name='tic_identidad'),
     path('tic/asignaciones/<str:recurso>/', puente_tic, name='tic_asignaciones'),
     path('tic/asignaciones/<str:recurso>/<path:ident>/', puente_tic, name='tic_asignaciones_detalle'),
